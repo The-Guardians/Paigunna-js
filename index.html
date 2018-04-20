@@ -1,26 +1,270 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Paigunna</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="./css/compiled.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous"> -->
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
-<body class="text-center">
-    <form class="form-signin">
-        <img class="mb-4" src="resources/Paigunna.png" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">PAIGUNNA</h1>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="./main.html">Sign in with Facebook</button>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" formaction="./test.html">Sign in with Google</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
+<body class="fixed-sn black-skin">
+    <!--Double navigation-->
+    <header>
+        <!-- Sidebar navigation -->
+        <ul id="slide-out" class="side-nav fixed sn-bg-4 custom-scrollbar">
+            <!-- Logo -->
+            <li>
+                <div class="logo-wrapper waves-light">
+                    <a href="#" style="text-align: center;">
+                        <img style="margin-bottom: auto;max-width: 100%;max-height: 100%;padding: 0cm;text-align: center;" src="resources/Paigunna.png">
+                    </a>
+                </div>
+            </li>
+
+            <div style="text-align: center; margin: 20px 0px">PAIGUNNA</div>
+            <li>
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#travel">
+                            <i class="fa fa-motorcycle" aria-hidden="true"></i>Travel
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>Notifications
+                            <span class="badge badge-danger" style="font-size: 10px">4</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-file-text-o" aria-hidden="true"></i>History
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-warning" aria-hidden="true"></i>Help
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r omise-checkout-button" data-toggle="modal" data-target="#omise">
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay now
+                            <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
+                        </a>
+
+                    </li>
+                    <div id="signOut">
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" style="color: red" href="index.html">
+                                <i class="fa fa-close" aria-hidden="true" style="color: red"></i> Sign out
+                            </a>
+                        </li>
+                    </div>
+
+                </ul>
+            </li>
+            <!--/. Side navigation links -->
+            <div class="sidenav-bg mask-strong"></div>
+        </ul>
+        <!--/. Sidebar navigation -->
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+                <a href="#" data-activates="slide-out" class="button-collapse">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fa fa-user"></i>
+                        <span class="clearfix d-none d-sm-inline-block" data-toggle="modal" data-target="#account">Account</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.Navbar -->
+    </header>
+    <!--/.Double navigation-->
+
+    <!--Main layout-->
+
+    <!--Map-->
+    <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
+    <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
+
+    <div class="modal fade" id="omise">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content">
+                <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
+                    <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
+                        data-frame-description="Merchant site description" data-amount="10025" data-currency="thb" data-button-label="Pay now ???">
+                        </script>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="account">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content">
+                <div class="w3-center">
+                    <br>
+                    <img src="resources/Paigunna.png" alt="Avatar" style="width:20%" class="w3-margin-top">
+                </div>
+                <br>
+
+                <div class="container">
+                    <br>
+                    <tr>
+                        <td>
+                            <label>Full Name</label>
+                        </td>
+                        <div id="name">
+                            <td>
+                                <input type="text" placeholder="Paigunna Project" style="text-align: center;width: 81%;" readonly>
+                                <br>
+                            </td>
+                        </div>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>
+                            <label>Telephone</label>
+                        </td>
+                        <div id="tel">
+                            <td>
+                                <input type="text" placeholder=088-888-8888 style="text-align: center;width: 81%;" readonly>
+                                <br>
+                            </td>
+                        </div>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td>
+                            <label>Email address</label>
+                        </td>
+                        <div id="email">
+                            <td>
+                                <input type="text" placeholder=example@mail.com style="width: 77%; text-align: center; margin-bottom: 20px" readonly>
+                                <br>
+                            </td>
+                        </div>
+
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-modal" id="popuplogin" style="z-index: 9999999999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="w3-center">
+                    <br>
+                    <img src="resources/Paigunna.png" alt="Avatar" style="width:20%" class="w3-margin-top">
+                </div>
+                <br>
+
+                <form class="form-signin" id="sign">
+                    <div class="w3-section">
+                        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">PAIGUNNA</h1>
+                        <button class="btn btn-lg btn-primary btn-block" style="font-weight: bold" type="button" onclick="login()">
+                            <i class="fa fa-facebook-f" aria-hidden="true"></i> Sign in with Facebook</button>
+                        <button class="btn btn-lg btn-primary btn-block" style="font-weight: bold" type="button" onclick="login()">
+                            <i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
+                        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="travel">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content">
+                <div class="title">List of travels
+                </div>
+                <select>
+                    <option>Apple</option>
+                    <option>Orange</option>
+                    <option>Pineapple</option>
+                    <option>Banana</option>
+                </select>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">item #1 My location to Ramkhamhaeng university</h5>
+                        </div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Select a vehicle type
+                        </button>
+
+                        <button id="callService" type="button" class="btn btn-success">Call service</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
+                            <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
+                            <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small class="text-muted">Donec id elit non mi porta.</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small class="text-muted">3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                        <small class="text-muted">Donec id elit non mi porta.</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="./js/compiled.min.js"></script>
+    <script>
+        // SideNav Initialization
+        $(".button-collapse").sideNav();
+
+        new WOW().init();
+    </script>
+    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/map.js" type="text/javascript"></script>
+    <script src="js/payment.js" type="text/javascript"></script>
+    <script src="https://cdn.omise.co/omise.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

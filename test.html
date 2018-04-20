@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
-
+<html>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <button id="nav-toggle">Click me</button>
-    <div class="menu">
-        <!-- Menu -->
-        <ul>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Blog</a>
-            </li>
-            <li>
-                <a href="#">Help</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-    <script>$('#nav-toggle').click(function (e) {
-            e.stopPropagation();
-            $(".menu").toggleClass('bar')
-        });
-        $('body').click(function (e) {
-            if ($('.menu').hasClass('bar')) {
-                $(".menu").toggleClass('bar')
-            }
-        })</script>
+
+Select a fruit and click the button:
+<select>
+  <option>Apple</option>
+  <option>Orange</option>
+  <option>Pineapple</option>
+  <option>Banana</option>
+</select>
 
 
 </body>
-
 </html>
