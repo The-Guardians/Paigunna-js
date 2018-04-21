@@ -19,6 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 
 <body class="fixed-sn black-skin">
@@ -36,6 +38,13 @@
             </li>
 
             <div style="text-align: center; margin: 20px 0px">PAIGUNNA</div>
+            <div style="text-align: center;">Service
+                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="&#10003" data-off="&#x2718">
+            </div>
+
+            <!-- <h5 style="text-align: center;">Service</h5> -->
+
+
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
@@ -88,13 +97,40 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
+
+            <button type="button" class="btn btn-primary" style="margin-left:5%">
+                <i class="fa fa-bed"></i>
+                <span class="clearfix d-none d-sm-inline-block">ที่พัก</span>
+            </button>
+
+            <button type="button" class="btn btn-warning">
+                <i class="fa fa-suitcase"></i>
+                <span class="clearfix d-none d-sm-inline-block">ที่เที่ยว</span>
+            </button>
+
+            <button type="button" class="btn btn-danger">
+                <i class="fa fa-cutlery"></i>
+                <span class="clearfix d-none d-sm-inline-block">ที่กิน</span>
+            </button>
+
+
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#account">
-                        <i class="fa fa-user"></i>
-                        <span class="clearfix d-none d-sm-inline-block" >Account</span>
-                    </a>
-                </li>
+                <div id="signout">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="modal" data-target="#account">
+                            <i class="fa fa-user"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Account</span>
+                        </a>
+                    </li>
+                    </div>
+                    <div id="signout1">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" style="color: red;">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Sign out</span>
+                        </a>
+                    </li>
+                </div>
             </ul>
         </nav>
         <!-- /.Navbar -->
