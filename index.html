@@ -39,7 +39,7 @@
 
             <div style="text-align: center; margin-top: 40%;margin-bottom: 8%;font-weight: bold;">Wasin</div>
             <div style="text-align: center;">Service
-                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="&#10003" data-off="&#x2718">
+                <input type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="&#10003" data-off="&#x2718">
             </div>
 
             <!-- <h5 style="text-align: center;">Service</h5> -->
@@ -70,7 +70,7 @@
                     </li>
                     <li>
                         <a class="collapsible-header waves-effect arrow-r omise-checkout-button" data-toggle="modal" data-target="#omise">
-                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay now
+                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay
                             <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
                         </a>
 
@@ -139,11 +139,34 @@
     <div class="modal fade" id="omise">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content">
-                <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
-                    <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
-                        data-frame-description="Merchant site description" data-amount="10025" data-currency="thb" data-button-label="Pay now ???">
-                        </script>
-                </form>
+                <div class="title">List of pay
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
+                            <span style="float: right;">Price : 10 Bath</span>
+
+                            <div class="input-group" style="width: 100%;">
+                                <div class="form-control" style="width: 100%">
+                                    <div class="form-control" style="margin-right: 3%;width: 100%">
+                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
+                                    </div>
+                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
+                                    <!-- <span>to</span> -->
+                                    <div class="form-control" style="margin-left: 3%;width: 100%">
+                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </h5>
+                        <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
+                            <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
+                                data-frame-description="Merchant site description" data-amount="10025" data-currency="thb" data-button-label="Pay now ???">
+                                </script>
+                        </form>
+                    </a>
+                </div>
 
             </div>
         </div>
@@ -225,12 +248,6 @@
             <div class="modal-content">
                 <div class="title">List of travels
                 </div>
-                <select>
-                    <option>Apple</option>
-                    <option>Orange</option>
-                    <option>Pineapple</option>
-                    <option>Banana</option>
-                </select>
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
 
@@ -255,7 +272,7 @@
 
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            Select a vehicle type
+                            Select vehicle
                         </button>
 
                         <button id="callService" type="button" class="btn btn-success">Call service</button>
