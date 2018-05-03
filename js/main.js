@@ -22,7 +22,6 @@ function callService() {
 }
 
 
-
 /*function logout() {
     document.getElementById('popuplogin').style.display = 'block';
     document.getElementById('signOut').style.display = 'none';

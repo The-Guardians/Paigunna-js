@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 </head>
 
 <body class="fixed-sn black-skin">
@@ -53,20 +54,36 @@
                         </a>
                     </li>
                     <li>
-                        <a class="collapsible-header waves-effect arrow-r">
+                        <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#noti">
                             <i class="fa fa-exclamation" aria-hidden="true"></i>Notifications
-                            <span class="badge badge-danger" style="font-size: 10px">4</span>
+                            <span class="badge badge-danger" style="font-size: 10px;float: right;margin-top: 5%;margin-right: 5%">1</span>
                         </a>
                     </li>
                     <li>
-                        <a class="collapsible-header waves-effect arrow-r"  data-toggle="modal" data-target="#callhistory">
+                        <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#callhistory">
                             <i class="fa fa-file-text-o" aria-hidden="true"></i>History
                         </a>
                     </li>
                     <li>
-                        <a class="collapsible-header waves-effect arrow-r">
+                        <!-- <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#help">
                             <i class="fa fa-warning" aria-hidden="true"></i>Help
+                        </a> -->
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-book" aria-hidden="true"></i>Manual
+                            <i class="fa fa-angle-down rotate-icon"></i>
                         </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li>
+                                    <a href="#" class="waves-effect" data-toggle="modal" data-target="#help">
+                                        <i class="fa fa-book" aria-hidden="true"></i>Let's start</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="waves-effect" data-toggle="modal" data-target="#help">
+                                        <i class="fa fa-book" aria-hidden="true"></i>Payment Process</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a class="collapsible-header waves-effect arrow-r omise-checkout-button" data-toggle="modal" data-target="#omise">
@@ -162,7 +179,7 @@
                         </h5>
                         <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
                             <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
-                                data-frame-description="Merchant site description" data-amount="10025" data-currency="thb" data-button-label="Pay now ???">
+                                data-frame-description="Merchant site description" data-amount="1000" data-currency="thb" data-button-label="Pay now">
                                 </script>
                         </form>
                     </a>
@@ -247,82 +264,76 @@
 
     <!--Popup History-->
 
-    <div id="callhistory" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999999;"> 
-            <div class="modal-dialog w3-card-4 w3-animate-zoom" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;"> 
-                <div class="modal-content"> 
-                    <div class="w3-center" style="background-color:green;color: white;margin:2%;"> 
-                        <h3>History</h3> 
-                    </div> 
-                    <div class="modal-body">
+    <div id="callhistory" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index:9999999;">
+        <div class="modal-dialog w3-card-4 w3-animate-zoom" style="overflow-y: scroll; max-height:85%;  margin-top: 50px; margin-bottom:50px;width: 100%">
+            <div class="modal-content">
+                <div class="w3-center" style="background-color:green;color: white;margin:2%;">
+                    <h3>History</h3>
+                </div>
+                <div class="modal-body">
 
-                            <div class="table-responsive" >          
-                                    <table class="table" >
-                                      <thead>
-                                        <tr>
-                                          <th>Order</th>
-                                          <th>Location</th>
-                                          <th>Distance</th>
-                                          <th>Price</th>
-                                          <th>Vehicle type</th>
-                                          <th>Date</th>
-                                          <th>Status</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                          <td>1</td>
-                                          <td>My location - Ramkhamhaeng University</td>
-                                          <td>5.2 km</td>
-                                          <td>10 Bath</td>
-                                          <td>Motorcycle</td>
-                                          <td>10.30 AM</td>
-                                          <td>Completed</td>
-                                        </tr>
-                                        <tr>
-                                          <td>2</td>
-                                          <td>Ramkhamhaeng University - The Mall Bangkapi</td>
-                                          <td>2.3 km</td>
-                                          <td>16 Bath</td>
-                                          <td>Motorcycle</td>
-                                          <td>13.00 PM</td>
-                                          <td>Completed</td>
-                                        </tr>
-                                        <tr>
-                                          <td>3</td>
-                                          <td>Ramkhamhaeng University - The Mall Bangkapi</td>
-                                          <td>2.3 km</td>
-                                          <td>16 Bath</td>
-                                          <td>Motorcycle</td>
-                                          <td>13.00 PM</td>
-                                          <td>Failure</td>
-                                        </tr>
-                                        <tr>
-                                          <td>4</td>
-                                          <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                          <td>4.3 km</td>
-                                          <td>45 Bath</td>
-                                          <td>Taxi</td>
-                                          <td>15.00 PM</td>
-                                          <td>Failure</td>
-                                        </tr>
-                                        <tr>
-                                        <td>5</td>
-                                        <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                        <td>4.3 km</td>
-                                        <td>45 Bath</td>
-                                        <td>Taxi</td>
-                                        <td>15.00 PM</td>
-                                        <td>Failure</td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                            </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Location</th>
+                                    <th>Distance</th>
+                                    <th>Price</th>
+                                    <th>Vehicle type</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>My location - Ramkhamhaeng University</td>
+                                    <td>5.2 km</td>
+                                    <td>10 Bath</td>
+                                    <td>Motorcycle</td>
+                                    <td>10.30 AM</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
+                                    <td>2.3 km</td>
+                                    <td>16 Bath</td>
+                                    <td>Motorcycle</td>
+                                    <td>13.00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
+                                    <td>2.3 km</td>
+                                    <td>16 Bath</td>
+                                    <td>Motorcycle</td>
+                                    <td>13.00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 Bath</td>
+                                    <td>Taxi</td>
+                                    <td>15.00 PM</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 Bath</td>
+                                    <td>Taxi</td>
+                                    <td>15.00 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    </div> 
-                    <div class="modal-footer">Test</div> 
-                </div> 
-            </div> 
-        </div> 
+                </div>
+                <div class="modal-footer">Test</div>
+            </div>
+        </div>
+    </div>
 
     <!--Travel popup-->
 
@@ -382,6 +393,53 @@
                         <small class="text-muted">Donec id elit non mi porta.</small>
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-modal" id="help" style="z-index: 9999999999;">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+            <div class="w3-center" style="background-color:black;color: white;">
+                <h3>Help</h3>
+            </div>
+            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                <div class="responsive-wrapper 
+              responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                    <iframe src="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview">
+                        <p style="font-size: 110%;">
+                            <em>
+                                <strong>ERROR: </strong>
+                                An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em>
+                            Please update your browser to its most recent version and try again, or access the file
+                            <a href="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview" with this link.></a>
+                        </p>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="noti">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content">
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <!-- <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#help">
+                                <i class="fa fa-warning" aria-hidden="true"></i>Help
+                            </a> -->
+                        <a class="collapsible-header waves-effect arrow-r">
+                            <i class="fa fa-book" aria-hidden="true"></i>Manual
+                        </a>
+                        <div class="collapsible-body">
+                            <ul>
+                                    <a href="#" class="waves-effect" data-toggle="modal" data-target="#help">
+                                        <i class="fa fa-book" aria-hidden="true"></i>Let's start</a>
+                                    <a href="#" class="waves-effect" data-toggle="modal" data-target="#help">
+                                        <i class="fa fa-book" aria-hidden="true"></i>Payment Process</a>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
