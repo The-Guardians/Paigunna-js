@@ -15,13 +15,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
 </head>
 
 <body class="fixed-sn black-skin">
@@ -153,41 +148,7 @@
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
 
-    <div class="modal fade" id="omise" style="z-index: 9999999999;">
-        <div class="modal-dialog" style="text-align: center">
-            <div class="modal-content" style="height: 550px;">
-                <div class="title">List of pay
-                </div>
-                <div class="list-group" id="itemPay">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
-                            <span style="float: right;">Price : 10 &#3647</span>
-
-                            <div class="input-group" style="width: 100%;">
-                                <div class="form-control" style="width: 100%">
-                                    <div class="form-control" style="margin-right: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
-                                    </div>
-                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
-                                    <!-- <span>to</span> -->
-                                    <div class="form-control" style="margin-left: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </h5>
-                        <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
-                            <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
-                                data-frame-description="Merchant site description" data-amount="1000" data-currency="thb" data-button-label="Pay now">
-                                </script>
-                        </form>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <!--Account popup-->
 
     <div class="modal fade" id="account">
         <div class="modal-dialog" style="text-align: center">
@@ -240,7 +201,8 @@
         </div>
     </div>
 
-    <!--Popup login-->
+    <!--Login popup-->
+
     <div class="w3-modal" id="popuplogin" style="z-index: 9999999999;">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:500px;border-radius: 10px;">
             <div class="w3-center">
@@ -259,120 +221,6 @@
                     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </div>
             </form>
-        </div>
-    </div>
-
-    <!--Popup History-->
-
-    <div class="modal fade" id="callhistory" style="z-index:9999999;">
-        <div class="modal-dialog" style="text-align: center">
-            <div class="modal-content" style="height: 550px;">
-                <div class="w3-center" style="background-color:rgb(0, 0, 0);color: white;margin:2%;">
-                    <h3>History</h3>
-                </div>
-                <div class="modal-body" >
-
-                    <div class="" style="position: relative;overflow-y: auto;overflow-x: auto;max-height: 300px;
-                    white-space: nowrap;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Order</th>
-                                    <th>Location</th>
-                                    <th>Distance</th>
-                                    <th>Price</th>
-                                    <th>Vehicle type</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>My location - Ramkhamhaeng University</td>
-                                    <td>5.2 km</td>
-                                    <td>10 &#3647</td>
-                                    <td>Motorcycle</td>
-                                    <td>10.30</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
-                                    <td>2.3 km</td>
-                                    <td>16 &#3647</td>
-                                    <td>Motorcycle</td>
-                                    <td>13.00</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
-                                    <td>2.3 km</td>
-                                    <td>16 &#3647</td>
-                                    <td>Motorcycle</td>
-                                    <td>13.00</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                    <td>4.3 km</td>
-                                    <td>45 &#3647</td>
-                                    <td>Taxi</td>
-                                    <td>15.00</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                    <td>4.3 km</td>
-                                    <td>45 &#3647</td>
-                                    <td>Taxi</td>
-                                    <td>15.00</td>
-                                </tr>
-                                <tr>
-                                        <td>5</td>
-                                        <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                        <td>4.3 km</td>
-                                        <td>45 &#3647</td>
-                                        <td>Taxi</td>
-                                        <td>15.00</td>
-                                    </tr>
-                                    <tr>
-                                            <td>5</td>
-                                            <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                            <td>4.3 km</td>
-                                            <td>45 &#3647</td>
-                                            <td>Taxi</td>
-                                            <td>15.00</td>
-                                        </tr>
-                                        <tr>
-                                                <td>5</td>
-                                                <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                                <td>4.3 km</td>
-                                                <td>45 &#3647</td>
-                                                <td>Taxi</td>
-                                                <td>15.00</td>
-                                            </tr>
-                                            <tr>
-                                                    <td>5</td>
-                                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                                    <td>4.3 km</td>
-                                                    <td>45 &#3647</td>
-                                                    <td>Taxi</td>
-                                                    <td>15.00</td>
-                                                </tr>
-                                                <tr>
-                                                        <td>5</td>
-                                                        <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                                        <td>4.3 km</td>
-                                                        <td>45 &#3647</td>
-                                                        <td>Taxi</td>
-                                                        <td>15.00</td>
-                                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <div class="modal-footer">Test</div>
-            </div>
         </div>
     </div>
 
@@ -429,28 +277,8 @@
             </div>
         </div>
     </div>
-    <div class="w3-modal" id="help" style="z-index: 9999999999;">
-        <div class="w3-modal-content w3-card-4 w3-animate-zoom">
-            <div class="w3-center" style="background-color:black;color: white;">
-                <h3>Help</h3>
-            </div>
-            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
-                <div class="responsive-wrapper 
-              responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
-                    <iframe src="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview">
-                        <p style="font-size: 110%;">
-                            <em>
-                                <strong>ERROR: </strong>
-                                An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em>
-                            Please update your browser to its most recent version and try again, or access the file
-                            <a href="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview" with this link.></a>
-                        </p>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <!--Notification popup-->
 
     <div class="modal fade" id="noti" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
@@ -498,43 +326,205 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- SCRIPTS -->
-        <!-- JQuery -->
-        <script type="text/javascript" src="./js/compiled.min.js"></script>
-        <!-- <script>
-            // SideNav Initialization
-            $(".button-collapse").sideNav();
+    <!--History popup-->
 
-            new WOW().init();
-        </script> -->
-        <script src="js/sidenavIniti.js" type="text/javascript"></script>
-        <script src="js/main.js" type="text/javascript"></script>
-        <script src="js/map.js" type="text/javascript"></script>
-        <script src="js/payment.js" type="text/javascript"></script>
-        <script src="https://cdn.omise.co/omise.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&libraries=places&callback=initMap"
-            async defer></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-        <script src="js/closenoti.js" type="text/javascript"></script>
-        <!-- <script>
-            var close = document.getElementsByClassName("closebtn");
-            var i;
+    <div class="modal fade" id="callhistory" style="z-index:9999999;">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content" style="height: 550px;">
+                <div class="w3-center" style="background-color:rgb(0, 0, 0);color: white;margin:2%;">
+                    <h3>History</h3>
+                </div>
+                <div class="modal-body">
 
-            for (i = 0; i < close.length; i++) {
-                close[i].onclick = function () {
-                    var div = this.parentElement;
-                    div.style.opacity = "0";
-                    setTimeout(function () { div.style.display = "none"; }, 600);
-                }
-            }
-        </script> -->
+                    <div class="" style="position: relative;overflow-y: auto;overflow-x: auto;max-height: 300px;
+                    white-space: nowrap;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order</th>
+                                    <th>Location</th>
+                                    <th>Distance</th>
+                                    <th>Price</th>
+                                    <th>Vehicle type</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>My location - Ramkhamhaeng University</td>
+                                    <td>5.2 km</td>
+                                    <td>10 &#3647</td>
+                                    <td>Motorcycle</td>
+                                    <td>10.30</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
+                                    <td>2.3 km</td>
+                                    <td>16 &#3647</td>
+                                    <td>Motorcycle</td>
+                                    <td>13.00</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Ramkhamhaeng University - The Mall Bangkapi</td>
+                                    <td>2.3 km</td>
+                                    <td>16 &#3647</td>
+                                    <td>Motorcycle</td>
+                                    <td>13.00</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
+                                    <td>4.3 km</td>
+                                    <td>45 &#3647</td>
+                                    <td>Taxi</td>
+                                    <td>15.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="modal-footer">Test</div>
+            </div>
+        </div>
+    </div>
+
+    <!--Help popup-->
+
+    <div class="w3-modal" id="help" style="z-index: 9999999999;">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+            <div class="w3-center" style="background-color:black;color: white;">
+                <h3>Help</h3>
+            </div>
+            <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                <div class="responsive-wrapper 
+              responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                    <iframe src="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview">
+                        <p style="font-size: 110%;">
+                            <em>
+                                <strong>ERROR: </strong>
+                                An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em>
+                            Please update your browser to its most recent version and try again, or access the file
+                            <a href="https://drive.google.com/file/d/0BxrMaW3xINrsR3h2cWx0OUlwRms/preview" with this link.></a>
+                        </p>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Omise popup-->
+
+    <div class="modal fade" id="omise" style="z-index: 9999999999;">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content" style="height: 550px;">
+                <div class="title">List of pay
+                </div>
+                <div class="list-group" id="itemPay">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
+                            <span style="float: right;">Price : 10 &#3647</span>
+
+                            <div class="input-group" style="width: 100%;">
+                                <div class="form-control" style="width: 100%">
+                                    <div class="form-control" style="margin-right: 3%;width: 100%">
+                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
+                                    </div>
+                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
+                                    <div class="form-control" style="margin-left: 3%;width: 100%">
+                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </h5>
+                        <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
+                            <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
+                                data-frame-description="Merchant site description" data-amount="1000" data-currency="thb" data-button-label="Pay now">
+                                </script>
+                        </form>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="./js/compiled.min.js"></script>
+    <script src="js/sidenavIniti.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/map.js" type="text/javascript"></script>
+    <script src="js/payment.js" type="text/javascript"></script>
+    <script src="https://cdn.omise.co/omise.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&libraries=places&callback=initMap"
+        async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="js/closenoti.js" type="text/javascript"></script>
 </body>
 
 </html>
