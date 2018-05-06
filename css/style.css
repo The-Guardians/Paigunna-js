@@ -354,3 +354,8 @@ set-box-shadow-cicis-menu-to-go {
 .closebtn:hover {
   color: black;
 }
+
+.table-head{
+  background-color: #111111 !important;
+  color: white !important;
+}
