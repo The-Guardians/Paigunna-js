@@ -32,15 +32,11 @@
                     </a>
                 </div>
             </li>
-
             <div style="text-align: center; margin-top: 40%;margin-bottom: 8%;font-weight: bold;">Wasin</div>
             <div style="text-align: center;">Service
                 <input type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="&#10003" data-off="&#x2718">
             </div>
-
             <!-- <h5 style="text-align: center;">Service</h5> -->
-
-
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
@@ -85,9 +81,7 @@
                             <i class="fa fa-credit-card-alt" aria-hidden="true"></i> Pay
                             <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
                         </a>
-
                     </li>
-
                 </ul>
             </li>
             <!--/. Side navigation links -->
@@ -102,23 +96,18 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-
             <button type="button" class="btn btn-primary" style="margin-left:5%">
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-
             <button type="button" class="btn btn-warning">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
-
             <button type="button" class="btn btn-danger">
                 <i class="fa fa-cutlery"></i>
                 <span class="clearfix d-none d-sm-inline-block">Restaurant</span>
             </button>
-
-
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <div id="signout">
                     <li class="nav-item">
@@ -157,7 +146,6 @@
                     <br>
                     <img style="border-radius: 50%; height: 30%; width: 30%;" src="resources/wasin.jpg" alt="Avatar">
                 </div>
-
                 <div class="container">
                     <br>
                     <tr>
@@ -194,7 +182,6 @@
                                 <br>
                             </td>
                         </div>
-
                     </tr>
                 </div>
             </div>
@@ -213,10 +200,10 @@
 
             <form class="form-signin" id="sign">
                 <div class="w3-section">
-                    <button class="btn btn-lg btn-primary btn-block" style="font-weight: bold" type="button" onclick="login()">
+                    <button class="btn-lg btn-block w3-button w3-indigo" style="font-weight: bold" type="button" onclick="login()">
                         <i class="fa fa-facebook-f" aria-hidden="true"></i> Sign in with Facebook</button>
 
-                    <button class="btn btn-lg btn-primary btn-block" style="font-weight: bold" type="button" onclick="login()">
+                    <button class="btn-lg btn-block w3-button w3-red" style="font-weight: bold" type="button" onclick="login()">
                         <i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</button>
                     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </div>
@@ -233,11 +220,9 @@
                 </div>
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-
-
+                        <span class="closebtn" style="color: red;">&times;</span>
                         <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
                             <span id="price" style="float: right;">Price : 10 &#3647</span>
-
                             <div class="input-group" style="width: 100%;">
                                 <div class="form-control" style="width: 100%">
                                     <div class="form-control" style="margin-right: 3%;width: 100%">
@@ -252,7 +237,6 @@
 
                             </div>
                         </h5>
-
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Select vehicle
@@ -264,14 +248,6 @@
                             <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
                             <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
                         </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                        </div>
-                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small class="text-muted">Donec id elit non mi porta.</small>
                     </a>
                 </div>
             </div>
@@ -286,22 +262,18 @@
                 <div class="title">Notifications
                 </div>
                 <div class="table-responsive">
-
                     <div class="alert">
                         <span class="closebtn">&times;</span>
                         <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-
                     <div class="alert success">
                         <span class="closebtn">&times;</span>
                         <strong>Success!</strong> Indicates a successful or positive action.
                     </div>
-
                     <div class="alert info">
                         <span class="closebtn">&times;</span>
                         <strong>Info!</strong> Indicates a neutral informative change or action.
                     </div>
-
                     <div class="alert warning">
                         <span class="closebtn">&times;</span>
                         <strong>Warning!</strong> Indicates a warning that might need attention.
@@ -322,7 +294,6 @@
                         <span class="closebtn">&times;</span>
                         <strong>4Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-
                 </div>
             </div>
         </div>
@@ -337,7 +308,6 @@
                     <h3>History</h3>
                 </div>
                 <div class="modal-body">
-
                     <div class="" style="position: relative;overflow-y: auto;overflow-x: auto;max-height: 450px;
                     white-space: nowrap;">
                         <table class="table">
@@ -348,7 +318,8 @@
                                     <th>Distance</th>
                                     <th>Price</th>
                                     <th>Vehicle type</th>
-                                    <th>Date</th>
+                                    <th>Date(D-M-Y)</th>
+                                    <th>Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -358,6 +329,7 @@
                                     <td>5.2 km</td>
                                     <td>10 &#3647</td>
                                     <td>Motorcycle</td>
+                                    <td>17-01-16</td>
                                     <td>10.30</td>
                                 </tr>
                                 <tr>
@@ -366,6 +338,7 @@
                                     <td>2.3 km</td>
                                     <td>16 &#3647</td>
                                     <td>Motorcycle</td>
+                                    <td>17-01-16</td>
                                     <td>13.00</td>
                                 </tr>
                                 <tr>
@@ -374,6 +347,7 @@
                                     <td>2.3 km</td>
                                     <td>16 &#3647</td>
                                     <td>Motorcycle</td>
+                                    <td>17-01-16</td>
                                     <td>13.00</td>
                                 </tr>
                                 <tr>
@@ -382,6 +356,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -390,6 +365,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -398,6 +374,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -406,6 +383,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -414,6 +392,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -422,6 +401,7 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
@@ -430,14 +410,13 @@
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
                                     <td>Taxi</td>
+                                    <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
                 </div>
-                
             </div>
         </div>
     </div>
@@ -477,7 +456,6 @@
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                         <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
                             <span style="float: right;">Price : 10 &#3647</span>
-
                             <div class="input-group" style="width: 100%;">
                                 <div class="form-control" style="width: 100%">
                                     <div class="form-control" style="margin-right: 3%;width: 100%">
@@ -488,7 +466,6 @@
                                         <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
                                     </div>
                                 </div>
-
                             </div>
                         </h5>
                         <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
@@ -498,7 +475,6 @@
                         </form>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
