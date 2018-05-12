@@ -1,5 +1,6 @@
 import {findCurrentLocation} from './findmylocate';
 import {seach} from './seachbox';
+import {nearbyRes,nearbyHostel} from './nearby';
 
 var map, infowindow;
 

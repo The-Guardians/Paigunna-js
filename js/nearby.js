@@ -1,15 +1,16 @@
 import { findCurrentLocation } from './findmylocate';
 import { initMap } from './mainmap';
 
-export function nearbyTour() {
+var radius = '2000';
+
+export function nearbyRes() {
     let map = initMap();
     var pyrmont = findCurrentLocation(map);
 
     var request = {
         location: pyrmont,
-        radius: '2000',
-        type: ['zoo','shopping_mall','museum','movie_theater','aquarium','amusement_park','night_club'
-    ,'park']
+        radius: radius,
+        type: ['restaurant']
     };
 
     service = new google.maps.places.PlacesService(map);
@@ -23,4 +24,34 @@ function callback(results, status) {
             createMarker(results[i]);
         }
     }
+}
+
+export function nearbyHostel(){ 
+    let map = initMap();
+
+    let myCurrentLocate = findCurrentLocation(map);
+
+    let request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['store']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+
+export function nearbyTour(){ 
+    let map = initMap();
+
+    let myCurrentLocate = findCurrentLocation(map);
+
+    let request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['amusement_park','aquarium','art_gallery','']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
 }
