@@ -1,13 +1,15 @@
 import { findCurrentLocation } from './findmylocate';
 import { initMap } from './mainmap';
 
+var radius = '2000';
+
 export function nearbyRes() {
     let map = initMap();
     var pyrmont = findCurrentLocation(map);
 
     var request = {
         location: pyrmont,
-        radius: '500',
+        radius: radius,
         type: ['restaurant']
     };
 
@@ -22,4 +24,19 @@ function callback(results, status) {
             createMarker(results[i]);
         }
     }
+}
+
+export function nearbyHostel(){ 
+    let map = initMap();
+
+    let myCurrentLocate = findCurrentLocation(map);
+
+    let request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['store']
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
 }
