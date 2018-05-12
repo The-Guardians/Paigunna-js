@@ -1,13 +1,13 @@
 import { findCurrentLocation } from './findmylocate';
 import { initMap } from './mainmap';
 
-export function nearbyRes() {
+function nearbyRes() {
     let map = initMap();
     var pyrmont = findCurrentLocation(map);
 
     var request = {
         location: pyrmont,
-        radius: '500',
+        radius: '2000',
         type: ['restaurant']
     };
 

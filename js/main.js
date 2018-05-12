@@ -22,8 +22,3 @@ function callService() {
     document.getElementById('price').style.display = 'block';
     document.getElementById('itemPay').style.display = 'block';
 }
-
-/*function logout() {
-    document.getElementById('popuplogin').style.display = 'block';
-    document.getElementById('signOut').style.display = 'none';
-}*/
