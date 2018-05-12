@@ -1,6 +1,4 @@
-
-
-
+export function seach(map){
 var input = document.getElementById('searchInput');
 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -63,4 +61,4 @@ autocomplete.addListener('place_changed', function () {
     document.getElementById('location').innerHTML = place.formatted_address;
     document.getElementById('lat').innerHTML = place.geometry.location.lat();
     document.getElementById('lon').innerHTML = place.geometry.location.lng();
-});
+});}
