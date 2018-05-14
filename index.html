@@ -36,7 +36,6 @@
             <div style="text-align: center;">Service
                 <input type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="&#10003" data-off="&#x2718">
             </div>
-            <!-- <h5 style="text-align: center;">Service</h5> -->
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
@@ -100,7 +99,7 @@
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-            <button type="button" class="btn btn-warning">
+            <button type="button" class="btn btn-warning" onclick="nearbyTour()">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
@@ -480,18 +479,20 @@
     </div>
 
     <!-- SCRIPTS -->
+    
     <!-- JQuery -->
     <script type="text/javascript" src="./js/compiled.min.js"></script>
+    <!-- <script src="js/nearby.js" type="text/javascript"></script> -->
+    <script src="js/test.js" type="text/javascript"></script>
     <script src="js/sidenavIniti.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/autocomplete.js" type="text/javascript"></script>
     <script src="js/seachbox.js" type="text/javascript"></script>
     <!-- <script src="js/map.js" type="text/javascript"></script> -->
     <script src="js/payment.js" type="text/javascript"></script>
-    <script src="js/nearby.js" type="text/javascript"></script>
     <script src="https://cdn.omise.co/omise.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhaZmBmPM8e2Oeo1-jNaHeeJEr_bxfnOk&libraries=places&callback=initMap"
         async defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
