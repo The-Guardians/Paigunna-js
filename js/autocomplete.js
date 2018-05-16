@@ -1,5 +1,7 @@
+var map, infowindow, pos;
+
 function initMap() {
-    var map, infowindow;
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 13.7248936, lng: 100.4930262 },
         zoom: 16,
@@ -17,7 +19,7 @@ function initMap() {
 function geoLocation(map) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
+            pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
@@ -47,6 +49,7 @@ function geoLocation(map) {
             'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
+
 }
 
 function searchBox(map, infowindow) {
@@ -109,3 +112,62 @@ function searchBox(map, infowindow) {
     });
     return infowindow;
 }
+
+var radius = '2000';
+var service;
+
+function nearbyHostel() {
+    let myCurrentLocate = new google.maps.LatLng(pos);
+    let request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['lodging']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+
+function nearbyTour() {
+    var myCurrentLocate = new google.maps.LatLng(pos);
+    var request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['restaurant']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+
+function nearbyRes() {
+    let myCurrentLocate = new google.maps.LatLng(pos);
+    console.log(pos);
+    let request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['restaurant']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+
+function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            var place = results[i];
+            createMarker(results[i]);
+        }
+    }
+}
+
+function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+    });
+  }
