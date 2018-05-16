@@ -1,12 +1,13 @@
-import { findCurrentLocation } from './findmylocate';
-import { initMap } from './mainmap';
+import { geoLocation } from './geoLocation';
+import { initMap } from './autocomplete';
 
-var radius = 2000;
-
+var radius = '2000';
+var service;
+var infowindow;
 
 export function nearbyHostel() {
     let map = initMap();
-    let myCurrentLocate = findCurrentLocation(map);
+    let myCurrentLocate = geoLocation(map);
     let request = {
         location: myCurrentLocate,
         radius: radius,
@@ -18,7 +19,7 @@ export function nearbyHostel() {
 
  export function nearbyTour() {
     let map = initMap();
-    var myCurrentLocate = findCurrentLocation(map);
+    var myCurrentLocate = geoLocation(map);
     var request = {
         location: myCurrentLocate,
         radius: radius,
@@ -31,7 +32,7 @@ export function nearbyHostel() {
 
 export function nearbyRes() {
     let map = initMap();
-    let myCurrentLocate = findCurrentLocation(map);
+    let myCurrentLocate = geoLocation(map);
     let request = {
         location: myCurrentLocate,
         radius: radius,
