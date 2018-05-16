@@ -1,6 +1,6 @@
-import {findCurrentLocation} from './findmylocate';
-import {seach} from './seachbox';
-import {nearbyRes,nearbyHostel} from './nearby';
+import { findCurrentLocation } from './findmylocate';
+import { seach } from './seachbox';
+import { nearbyRes, nearbyHostel } from './nearby';
 
 var map, infowindow;
 
@@ -11,7 +11,7 @@ export function initMap() {
     disableDefaultUI: true,
     zoomControl: true
   });
-findCurrentLocation(map);
-seach(map);
-return map;
+  findCurrentLocation(map);
+  seach(map);
+  return map;
 }

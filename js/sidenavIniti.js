@@ -1,4 +1,4 @@
- // SideNav Initialization
- $(".button-collapse").sideNav();
+// SideNav Initialization
+$(".button-collapse").sideNav();
 
- new WOW().init();
+new WOW().init();
