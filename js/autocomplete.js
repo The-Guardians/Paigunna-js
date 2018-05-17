@@ -153,6 +153,8 @@ function nearbyTour() {
     service.nearbySearch(request, callback);
 }
 
+
+
 function nearbyRes() {
     let myCurrentLocate = new google.maps.LatLng(pos);
     console.log(pos);
