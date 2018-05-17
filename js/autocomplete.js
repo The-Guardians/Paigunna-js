@@ -145,35 +145,27 @@ function nearbyHostel() {
     service.nearbySearch(request, callback);
 }
 
-function nearbyTour1() {
+function nearbyTour() {
     var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestShop = {
         location: myCurrentLocate,
         radius: radius,
         type: ['shopping_mall']
     };
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-function nearbyTour2() {
-    var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestPark = {
         location: myCurrentLocate,
         radius: radius,
         type: ['park']
     };
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-function nearbyTour3() {
-    var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestMovie = {
         location: myCurrentLocate,
         radius: radius,
         type: ['movie_theater']
     };
     service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+    service.nearbySearch(requestShop, callback);
+    service.nearbySearch(requestPark, callback);
+    service.nearbySearch(requestMovie, callback);
 }
 
 function nearbyRes() {
