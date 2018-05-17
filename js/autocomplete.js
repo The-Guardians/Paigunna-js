@@ -131,7 +131,7 @@ function searchBox(map, infowindow) {
     return infowindow;
 }
 
-var radius = '5000';
+var radius = '3000';
 var service;
 
 function nearbyHostel() {
@@ -145,7 +145,7 @@ function nearbyHostel() {
     service.nearbySearch(request, callback);
 }
 
-function nearbyTour1() {
+function nearbyTourShop() {
     var myCurrentLocate = new google.maps.LatLng(pos);
     var request = {
         location: myCurrentLocate,
@@ -155,7 +155,7 @@ function nearbyTour1() {
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
 }
-function nearbyTour2() {
+function nearbyTourPark() {
     var myCurrentLocate = new google.maps.LatLng(pos);
     var request = {
         location: myCurrentLocate,
@@ -165,7 +165,7 @@ function nearbyTour2() {
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
 }
-function nearbyTour3() {
+function nearbyTourMovie() {
     var myCurrentLocate = new google.maps.LatLng(pos);
     var request = {
         location: myCurrentLocate,
@@ -176,6 +176,19 @@ function nearbyTour3() {
     service.nearbySearch(request, callback);
 }
 
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+function nearbyTour() {
+    var myCurrentLocate = new google.maps.LatLng(pos);
+    var request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['amusement_park']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
 
 
 function nearbyRes() {
@@ -210,68 +223,7 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
-/*------*/
-
-// var source, destination;
-// var directionsDisplay;
-// var directionsService = new google.maps.DirectionsService;
-// google.maps.event.addDomListener(window, 'load', function () {
-//     new google.maps.places.SearchBox(document.getElementById('searchInput'));
-//     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
-// });
-
-// function GetRoute() {
-//     // directionsDisplay.setMap(map);
-//     //*********DIRECTIONS AND ROUTE**********************//
-//     source = pos;
-//     destination = document.getElementById("searchInput").value;
-//     console.log(source);
-//     console.log(destination);
-
-//     var request = {
-//         origin: source,
-//         destination: destination,
-//         travelMode: google.maps.TravelMode.DRIVING
-//     };
-
-//     google.maps.DirectionsService.route(request, function (response, status) {
-//         if (status == google.maps.DirectionsStatus.OK) {
-//             directionsDisplay.setDirections(response);
-//         }
-//     });
-
-//     // directionsService.route(request, function (response, status) {
-//     //     if (status == google.maps.DirectionsStatus.OK) {
-//     //         directionsDisplay.setDirections(response);
-//     //     }
-//     // });
-
-//     //*********DISTANCE AND DURATION**********************//
-//     var service = new google.maps.DistanceMatrixService();
-//     service.getDistanceMatrix({
-//         origins: [source],
-//         destinations: [destination],
-//         travelMode: google.maps.TravelMode.DRIVING,
-//         unitSystem: google.maps.UnitSystem.METRIC,
-//         avoidHighways: false,
-//         avoidTolls: false
-//     }, function (response, status) {
-//         if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-//             var distance = response.rows[0].elements[0].distance.text;
-//             var duration = response.rows[0].elements[0].duration.text;
-//             var dvDistance = document.getElementById("dvDistance");
-//            dvDistance.innerHTML = "";
-//             dvDistance.innerHTML += "Distance: " + distance + "<br />";
-//             dvDistance.innerHTML += "Duration:" + duration;
-
-//         } else {
-//             alert("Unable to find the distance via road.");
-//         }
-//     });
-//   }
-
-// test
+//
 function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
