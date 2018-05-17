@@ -25,7 +25,7 @@ function getRoute() {
     var directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
-        panel: document.getElementById('right-panel')
+        panel: document.getElementById('route-panel')
     });
     directionsDisplay.addListener('directions_changed', function () {
         computeTotalDistance(directionsDisplay.getDirections());
@@ -135,6 +135,8 @@ var radius = '3000';
 var service;
 
 function nearbyHostel() {
+    setMapOnAll(null);
+    geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
     let request = {
         location: myCurrentLocate,
@@ -145,53 +147,46 @@ function nearbyHostel() {
     service.nearbySearch(request, callback);
 }
 
-function nearbyTourShop() {
+function nearbyTour() {
+    setMapOnAll(null);
+    geoLocation(map);
     var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestShop = {
         location: myCurrentLocate,
         radius: radius,
         type: ['shopping_mall']
     };
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-function nearbyTourPark() {
-    var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestPark = {
         location: myCurrentLocate,
         radius: radius,
         type: ['park']
     };
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-function nearbyTourMovie() {
-    var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestMovie = {
         location: myCurrentLocate,
         radius: radius,
         type: ['movie_theater']
     };
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
-}
-function nearbyTour() {
-    var myCurrentLocate = new google.maps.LatLng(pos);
-    var request = {
+    var requestNight = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['night_club']
+    };
+    var requestAmuusement = {
         location: myCurrentLocate,
         radius: radius,
         type: ['amusement_park']
     };
     service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+    service.nearbySearch(requestShop, callback);
+    service.nearbySearch(requestPark, callback);
+    service.nearbySearch(requestMovie, callback);
+    service.nearbySearch(requestNight, callback);
+    service.nearbySearch(requestAmuusement, callback);
 }
 
-
 function nearbyRes() {
+    setMapOnAll(null);
+    geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
     let request = {
         location: myCurrentLocate,
@@ -223,7 +218,7 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-//
+//  route detail
 function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
