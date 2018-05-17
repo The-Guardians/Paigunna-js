@@ -99,7 +99,7 @@
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-            <button type="button" class="btn btn-warning" onclick="nearbyTour()">
+            <button type="button" class="btn btn-warning" onclick="nearbyTour1();nearbyTour2();nearbyTour3();">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
@@ -133,10 +133,14 @@
     <!--Main layout-->
 
     <!--Map-->
+    
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
-    <button type="button" onclick="GetRoute()">GetRoute</button>
+    <button type="button" onclick="getRoute()">GetRoute</button>
 
+    <div id="right-panel" style="width: 20%; height: 30%;">
+        <p>Total Distance: <span id="total"></span></p>
+      </div>
 
     <!--Account popup-->
 
@@ -481,18 +485,19 @@
     </div>
 
     <!-- SCRIPTS -->
+    
     <!-- JQuery -->
     <script type="text/javascript" src="./js/compiled.min.js"></script>
     <script src="js/sidenavIniti.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/autocomplete.js" type="text/javascript"></script>
+    <!-- <script src="js/test.js" type="text/javascript"></script> -->
     <script src="js/nearby.js" type="text/javascript"></script>
     <script src="js/closenoti.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&sensor=false&libraries=places&callback=initMap"
         async defer></script>
     <script src="https://cdn.omise.co/omise.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

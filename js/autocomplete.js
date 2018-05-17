@@ -1,4 +1,5 @@
 var map, infowindow, pos;
+var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
     zoom: 16,
@@ -13,6 +14,23 @@ function initMap() {
     // Try HTML5 geolocation.
     geoLocation(map);
     infowindow = searchBox(map, infowindow);
+
+}
+
+function getRoute() {
+    setMapOnAll(null);
+    var source = pos;
+    var destination = document.getElementById("searchInput").value;
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map,
+        panel: document.getElementById('right-panel')
+    });
+    directionsDisplay.addListener('directions_changed', function () {
+        computeTotalDistance(directionsDisplay.getDirections());
+    });
+    displayRoute(source, destination, directionsService, directionsDisplay);
 }
 
 function geoLocation(map) {
@@ -27,6 +45,7 @@ function geoLocation(map) {
                 map: map,
                 title: "Your Location"
             });
+            markers.push(marker);
             console.log(pos);
             infoWindow.open(map);
             map.setCenter(pos);
@@ -60,6 +79,7 @@ function searchBox(map, infowindow) {
         map: map,
         anchorPoint: new google.maps.Point(0, -29)
     });
+    markers.push(marker);
     autocomplete.addListener('place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
@@ -111,7 +131,7 @@ function searchBox(map, infowindow) {
     return infowindow;
 }
 
-var radius = '2000';
+var radius = '5000';
 var service;
 
 function nearbyHostel() {
@@ -125,12 +145,32 @@ function nearbyHostel() {
     service.nearbySearch(request, callback);
 }
 
-function nearbyTour() {
+function nearbyTour1() {
     var myCurrentLocate = new google.maps.LatLng(pos);
     var request = {
         location: myCurrentLocate,
         radius: radius,
-        type: ['movie_theater','shopping_mall']
+        type: ['shopping_mall']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+function nearbyTour2() {
+    var myCurrentLocate = new google.maps.LatLng(pos);
+    var request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['park']
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, callback);
+}
+function nearbyTour3() {
+    var myCurrentLocate = new google.maps.LatLng(pos);
+    var request = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['movie_theater']
     };
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(request, callback);
@@ -162,7 +202,7 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
-
+    markers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
@@ -171,60 +211,94 @@ function createMarker(place) {
 
 /*------*/
 
-var source, destination;
-var directionsDisplay;
-var directionsService = new google.maps.DirectionsService;
-google.maps.event.addDomListener(window, 'load', function () {
-    new google.maps.places.SearchBox(document.getElementById('searchInput'));
-    directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
-});
- 
-function GetRoute() {
-    // directionsDisplay.setMap(map);
-    //*********DIRECTIONS AND ROUTE**********************//
-    source = pos;
-    destination = document.getElementById("searchInput").value;
-    console.log(source);
-    console.log(destination);
- 
-    var request = {
-        origin: source,
+// var source, destination;
+// var directionsDisplay;
+// var directionsService = new google.maps.DirectionsService;
+// google.maps.event.addDomListener(window, 'load', function () {
+//     new google.maps.places.SearchBox(document.getElementById('searchInput'));
+//     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+// });
+
+// function GetRoute() {
+//     // directionsDisplay.setMap(map);
+//     //*********DIRECTIONS AND ROUTE**********************//
+//     source = pos;
+//     destination = document.getElementById("searchInput").value;
+//     console.log(source);
+//     console.log(destination);
+
+//     var request = {
+//         origin: source,
+//         destination: destination,
+//         travelMode: google.maps.TravelMode.DRIVING
+//     };
+
+//     google.maps.DirectionsService.route(request, function (response, status) {
+//         if (status == google.maps.DirectionsStatus.OK) {
+//             directionsDisplay.setDirections(response);
+//         }
+//     });
+
+//     // directionsService.route(request, function (response, status) {
+//     //     if (status == google.maps.DirectionsStatus.OK) {
+//     //         directionsDisplay.setDirections(response);
+//     //     }
+//     // });
+
+//     //*********DISTANCE AND DURATION**********************//
+//     var service = new google.maps.DistanceMatrixService();
+//     service.getDistanceMatrix({
+//         origins: [source],
+//         destinations: [destination],
+//         travelMode: google.maps.TravelMode.DRIVING,
+//         unitSystem: google.maps.UnitSystem.METRIC,
+//         avoidHighways: false,
+//         avoidTolls: false
+//     }, function (response, status) {
+//         if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+//             var distance = response.rows[0].elements[0].distance.text;
+//             var duration = response.rows[0].elements[0].duration.text;
+//             var dvDistance = document.getElementById("dvDistance");
+//            dvDistance.innerHTML = "";
+//             dvDistance.innerHTML += "Distance: " + distance + "<br />";
+//             dvDistance.innerHTML += "Duration:" + duration;
+
+//         } else {
+//             alert("Unable to find the distance via road.");
+//         }
+//     });
+//   }
+
+// test
+function displayRoute(origin, destination, service, display) {
+    service.route({
+        origin: origin,
         destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING
-    };
-
-    google.maps.DirectionsService.route(request, function (response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-        }
-    });
-
-    // directionsService.route(request, function (response, status) {
-    //     if (status == google.maps.DirectionsStatus.OK) {
-    //         directionsDisplay.setDirections(response);
-    //     }
-    // });
- 
-    //*********DISTANCE AND DURATION**********************//
-    var service = new google.maps.DistanceMatrixService();
-    service.getDistanceMatrix({
-        origins: [source],
-        destinations: [destination],
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        avoidHighways: false,
-        avoidTolls: false
-    }, function (response, status) {
-        if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-            var distance = response.rows[0].elements[0].distance.text;
-            var duration = response.rows[0].elements[0].duration.text;
-            var dvDistance = document.getElementById("dvDistance");
-           dvDistance.innerHTML = "";
-            dvDistance.innerHTML += "Distance: " + distance + "<br />";
-            dvDistance.innerHTML += "Duration:" + duration;
- 
-        } else {
-            alert("Unable to find the distance via road.");
-        }
-    });
+        //   waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
+        travelMode: 'DRIVING',
+        avoidTolls: true
+    },
+        function (response, status) {
+            if (status === 'OK') {
+                display.setDirections(response);
+            } else {
+                alert('Could not display directions due to: ' + status);
+            }
+        });
 }
+
+function computeTotalDistance(result) {
+    var total = 0;
+    var myroute = result.routes[0];
+    for (var i = 0; i < myroute.legs.length; i++) {
+        total += myroute.legs[i].distance.value;
+    }
+    total = total / 1000;
+    document.getElementById('total').innerHTML = total + ' km';
+}
+
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
