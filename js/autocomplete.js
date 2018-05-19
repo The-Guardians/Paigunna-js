@@ -258,6 +258,9 @@ function computeTotalDistance(result) {
     }
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
+    document.getElementById('totalTravel').innerHTML = 'item #1 (' + total + 'km)';
+    console.log(input.value);
+    document.getElementById('destination').innerHTML = input.value;
 }
 
 function setMapOnAll(map) {

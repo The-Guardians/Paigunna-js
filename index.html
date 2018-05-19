@@ -95,19 +95,19 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-            <button type="button" class="btn btn-primary" style="margin-left:7px"  onclick="nearbyHostel()">
+            <button type="button" class="btn btn-primary" style="margin-left:5px" onclick="nearbyHostel()">
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-            <button type="button" class="btn btn-warning"  onclick="nearbyTour();">
+            <button type="button" class="btn btn-warning" style="margin-left:5px" onclick="nearbyTour();">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
-            <button type="button" class="btn btn-danger"  onclick="nearbyRes()">
+            <button type="button" class="btn btn-danger" style="margin-left:5px" onclick="nearbyRes()">
                 <i class="fa fa-cutlery"></i>
                 <span class="clearfix d-none d-sm-inline-block">Restaurant</span>
             </button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#route">
+            <button type="button" class="btn btn-success" style="margin-left:5px" data-toggle="modal" data-target="#route">
                 <i class="fa fa-motorcycle"></i>
                 <span class="clearfix d-none d-sm-inline-block">Route Detail</span>
             </button>
@@ -137,7 +137,7 @@
     <!--Main layout-->
 
     <!--Map-->
-    
+
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
     <!-- <button type="button" onclick="getRoute()">GetRoute</button> -->
@@ -227,37 +227,35 @@
             <div class="modal-content" style="height: 550px;max-height: 550px;">
                 <div class="title">List of travels
                 </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <span class="closebtn" style="color: red;">&times;</span>
-                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
-                            <span id="price" style="float: right;">Price : 10 &#3647</span>
-                            <div class="input-group" style="width: 100%;">
-                                <div class="form-control" style="width: 100%">
-                                    <div class="form-control" style="margin-right: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
-                                    </div>
-                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
-                                    <!-- <span>to</span> -->
-                                    <div class="form-control" style="margin-left: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
+                <div class="list-group" >
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <span class="closebtn" style="color: red;">&times;</span>
+                            <h5 class="mb-1" id="totalTravel" style="text-align: left">
+                                <span id="price" style="float: right;">Price : 10 &#3647</span>
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="form-control" style="width: 100%">
+                                        <div class="form-control" style="margin-right: 3%;width: 100%">
+                                            <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
+                                        </div>
+                                        <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
+                                        <div class="form-control" style="margin-left: 3%;width: 100%">
+                                            <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4" id="destination"></marquee>
+                                        </div>
                                     </div>
                                 </div>
+                            </h5>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Select vehicle
+                            </button>
 
+                            <button id="callService" type="button" class="btn btn-success">Call service</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
+                                <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
+                                <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
                             </div>
-                        </h5>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Select vehicle
-                        </button>
-
-                        <button id="callService" type="button" class="btn btn-success">Call service</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
-                            <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
-                            <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
-                        </div>
-                    </a>
+                        </a>
                 </div>
             </div>
         </div>
@@ -495,16 +493,20 @@
             <div class="modal-content" style="height:550px;padding: 2%;">
                 <div class="title">Route
                 </div>
-                    <h6>Total Distance: <span id="total"></span></h6>
-                    <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;">
-                    </div>
-
+                <h6>Total Distance:
+                    <span id="total"></span>
+                </h6>
+                <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;">
+                </div>
+                <button type="button" class="btn btn-primary" style="margin-left:5px" onclick="addToTravel()">
+                    <span class="clearfix d-none d-sm-inline-block">add to travel</span>
+                </button>
             </div>
         </div>
     </div>
 
     <!-- SCRIPTS -->
-    
+
     <!-- JQuery -->
     <script type="text/javascript" src="./js/compiled.min.js"></script>
     <script src="js/sidenavIniti.js" type="text/javascript"></script>
