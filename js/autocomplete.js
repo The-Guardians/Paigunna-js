@@ -1,4 +1,4 @@
-var map, infowindow, pos, count = 1;
+var map, infowindow, pos, count = 1, panel,num = 1;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -19,7 +19,6 @@ function initMap() {
 }
 
 function getRoute() {
-    var panel;
     if (markers != null) {
         setMapOnAll(null);
     }
@@ -149,7 +148,7 @@ var radius = '3000';
 var service;
 
 function nearbyHostel() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -165,7 +164,7 @@ function nearbyHostel() {
 }
 
 function nearbyTour() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -205,7 +204,7 @@ function nearbyTour() {
 }
 
 function nearbyRes() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -238,10 +237,31 @@ function createMarker(place) {
 
     marker.setAnimation(google.maps.Animation.DROP);
 
-    marker.addListener('click' , function(){
+    marker.addListener('click', function () {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         var markerPos = marker.getPosition();
-        console.log("lat : "+ markerPos.lat() + ", lng : "+markerPos.lng());
+        console.log("lat : " + markerPos.lat() + ", lng : " + markerPos.lng());
+        if (markers != null) {
+            setMapOnAll(null);
+        }
+        if (num != 1) {
+            panel = document.getElementById('route-panel').innerHTML = "";
+        }
+        panel = document.getElementById('route-panel');
+        source = pos;
+        destination = new google.maps.LatLng(markerPos.lat(), markerPos.lng())
+        console.log(destination.value);/************************/
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map,
+            panel: panel
+        });
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
+        displayRoute(source, destination, directionsService, directionsDisplay);
+        num ++;
     });
 
     markers.push(marker);
@@ -276,7 +296,6 @@ function computeTotalDistance(result) {
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
     document.getElementById('totalTravel').innerHTML = 'item #1 (' + total + 'km)';
-    console.log(input.value);
     document.getElementById('destination').innerHTML = input.value;
 }
 

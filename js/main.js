@@ -7,7 +7,7 @@ document.getElementById('email').style.display = 'none';
 document.getElementById('callService').disabled = true;
 document.getElementById('price').style.display = 'none';
 document.getElementById('itemPay').style.display = 'none';
-document.getElementById('itemTravel').style.display = 'none';
+document.getElementById('omise').style.display = 'none';
 
 function login() {
     document.getElementById('popuplogin').style.display = 'none';
@@ -22,8 +22,5 @@ function callService() {
     document.getElementById('callService').disabled = false;
     document.getElementById('price').style.display = 'block';
     document.getElementById('itemPay').style.display = 'block';
-}
 
-function addToTravel() {
-    document.getElementById('itemTravel').style.display = 'block';
 }
