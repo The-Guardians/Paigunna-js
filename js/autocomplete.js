@@ -49,6 +49,7 @@ function geoLocation(map) {
                 title: "Your Location",
                 icon: "https://www.picz.in.th/images/2018/05/19/zxUpFa.png"
             });
+            marker.setAnimation(google.maps.Animation.BOUNCE);
             markers.push(marker);
             infoWindow.open(map);
             map.setCenter(pos);
