@@ -1,4 +1,4 @@
-var map, infowindow, pos;
+var map, infowindow, pos, count = 1;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -19,21 +19,28 @@ function initMap() {
 }
 
 function getRoute() {
+    var panel;
     if (markers != null) {
         setMapOnAll(null);
     }
+    if (count != 1) {
+        directionsDisplay.setMap(null);
+        panel = document.getElementById('route-panel').innerHTML = "";
+    }
+    panel = document.getElementById('route-panel');
     source = pos;
     destination = document.getElementById("searchInput").value;
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
-        panel: document.getElementById('route-panel')
+        panel: panel
     });
     directionsDisplay.addListener('directions_changed', function () {
         computeTotalDistance(directionsDisplay.getDirections());
     });
     displayRoute(source, destination, directionsService, directionsDisplay);
+    count++;
 }
 
 function geoLocation(map) {

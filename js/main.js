@@ -6,7 +6,7 @@ document.getElementById('tel').style.display = 'none';
 document.getElementById('email').style.display = 'none';
 document.getElementById('callService').disabled = true;
 document.getElementById('price').style.display = 'none';
-document.getElementById('itemPay').style.display = 'none'; 
+document.getElementById('itemPay').style.display = 'none';
 document.getElementById('itemTravel').style.display = 'none';
 
 function login() {
