@@ -227,6 +227,15 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
+
+    marker.setAnimation(google.maps.Animation.DROP);
+
+    marker.addListener('click' , function(){
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        var markerPos = marker.getPosition();
+        console.log("lat : "+ markerPos.lat() + ", lng : "+markerPos.lng());
+    });
+
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(place.name);
