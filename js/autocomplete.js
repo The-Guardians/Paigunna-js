@@ -6,23 +6,26 @@ var mapOption = {
     disableDefaultUI: true,
     zoomControl: true
 };
+var source, destination;
+var directionsService;
+var directionsDisplay;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOption);
     infoWindow = new google.maps.InfoWindow;
-
     // Try HTML5 geolocation.
     geoLocation(map);
     infowindow = searchBox(map, infowindow);
-
 }
 
 function getRoute() {
-    setMapOnAll(null);
-    var source = pos;
-    var destination = document.getElementById("searchInput").value;
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer({
+    if (markers != null) {
+        setMapOnAll(null);
+    }
+    source = pos;
+    destination = document.getElementById("searchInput").value;
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
         panel: document.getElementById('route-panel')
@@ -43,10 +46,10 @@ function geoLocation(map) {
             var marker = new google.maps.Marker({
                 position: pos,
                 map: map,
-                title: "Your Location"
+                title: "Your Location",
+                icon: "https://www.picz.in.th/images/2018/05/19/zxUpFa.png"
             });
             markers.push(marker);
-            console.log(pos);
             infoWindow.open(map);
             map.setCenter(pos);
         }, function () {
@@ -68,9 +71,9 @@ function geoLocation(map) {
         infoWindow.open(map);
     }
 }
-
+var input;
 function searchBox(map, infowindow) {
-    var input = document.getElementById('searchInput');
+    input = document.getElementById('searchInput');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
@@ -91,6 +94,9 @@ function searchBox(map, infowindow) {
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
+            if (input.value != "") {
+                getRoute();
+            }
         }
         else {
             map.setCenter(place.geometry.location);
@@ -135,6 +141,9 @@ var radius = '3000';
 var service;
 
 function nearbyHostel() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
     setMapOnAll(null);
     geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
@@ -148,6 +157,9 @@ function nearbyHostel() {
 }
 
 function nearbyTour() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
     setMapOnAll(null);
     geoLocation(map);
     var myCurrentLocate = new google.maps.LatLng(pos);
@@ -185,6 +197,9 @@ function nearbyTour() {
 }
 
 function nearbyRes() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
     setMapOnAll(null);
     geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
@@ -223,7 +238,6 @@ function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
         destination: destination,
-        //   waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
         travelMode: 'DRIVING',
         avoidTolls: true
     },
@@ -248,6 +262,6 @@ function computeTotalDistance(result) {
 
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
+        markers[i].setMap(map);
     }
-  }
+}
