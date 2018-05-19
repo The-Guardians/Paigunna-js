@@ -6,23 +6,26 @@ var mapOption = {
     disableDefaultUI: true,
     zoomControl: true
 };
+var source, destination;
+var directionsService;
+var directionsDisplay;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOption);
     infoWindow = new google.maps.InfoWindow;
-
     // Try HTML5 geolocation.
     geoLocation(map);
     infowindow = searchBox(map, infowindow);
-
 }
 
 function getRoute() {
-    setMapOnAll(null);
-    var source = pos;
-    var destination = document.getElementById("searchInput").value;
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer({
+    if (markers != null) {
+        setMapOnAll(null);
+    }
+    source = pos;
+    destination = document.getElementById("searchInput").value;
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
         panel: document.getElementById('right-panel')
@@ -43,10 +46,10 @@ function geoLocation(map) {
             var marker = new google.maps.Marker({
                 position: pos,
                 map: map,
-                title: "Your Location"
+                title: "Your Location",
+                icon: "https://www.picz.in.th/images/2018/05/19/zxUpFa.png"
             });
             markers.push(marker);
-            console.log(pos);
             infoWindow.open(map);
             map.setCenter(pos);
         }, function () {
@@ -68,9 +71,9 @@ function geoLocation(map) {
         infoWindow.open(map);
     }
 }
-
+var input;
 function searchBox(map, infowindow) {
-    var input = document.getElementById('searchInput');
+    input = document.getElementById('searchInput');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
@@ -91,6 +94,9 @@ function searchBox(map, infowindow) {
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
+            if (input.value != "") {
+                getRoute();
+            }
         }
         else {
             map.setCenter(place.geometry.location);
@@ -131,10 +137,15 @@ function searchBox(map, infowindow) {
     return infowindow;
 }
 
-var radius = '5000';
+var radius = '3000';
 var service;
 
 function nearbyHostel() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
+    setMapOnAll(null);
+    geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
     let request = {
         location: myCurrentLocate,
@@ -146,6 +157,11 @@ function nearbyHostel() {
 }
 
 function nearbyTour() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
+    setMapOnAll(null);
+    geoLocation(map);
     var myCurrentLocate = new google.maps.LatLng(pos);
     var requestShop = {
         location: myCurrentLocate,
@@ -169,6 +185,11 @@ function nearbyTour() {
 }
 
 function nearbyRes() {
+    if (input.value != "") {
+        directionsDisplay.setMap(null);
+    }
+    setMapOnAll(null);
+    geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
     let request = {
         location: myCurrentLocate,
@@ -201,72 +222,10 @@ function createMarker(place) {
     });
 }
 
-/*------*/
-
-// var source, destination;
-// var directionsDisplay;
-// var directionsService = new google.maps.DirectionsService;
-// google.maps.event.addDomListener(window, 'load', function () {
-//     new google.maps.places.SearchBox(document.getElementById('searchInput'));
-//     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
-// });
-
-// function GetRoute() {
-//     // directionsDisplay.setMap(map);
-//     //*********DIRECTIONS AND ROUTE**********************//
-//     source = pos;
-//     destination = document.getElementById("searchInput").value;
-//     console.log(source);
-//     console.log(destination);
-
-//     var request = {
-//         origin: source,
-//         destination: destination,
-//         travelMode: google.maps.TravelMode.DRIVING
-//     };
-
-//     google.maps.DirectionsService.route(request, function (response, status) {
-//         if (status == google.maps.DirectionsStatus.OK) {
-//             directionsDisplay.setDirections(response);
-//         }
-//     });
-
-//     // directionsService.route(request, function (response, status) {
-//     //     if (status == google.maps.DirectionsStatus.OK) {
-//     //         directionsDisplay.setDirections(response);
-//     //     }
-//     // });
-
-//     //*********DISTANCE AND DURATION**********************//
-//     var service = new google.maps.DistanceMatrixService();
-//     service.getDistanceMatrix({
-//         origins: [source],
-//         destinations: [destination],
-//         travelMode: google.maps.TravelMode.DRIVING,
-//         unitSystem: google.maps.UnitSystem.METRIC,
-//         avoidHighways: false,
-//         avoidTolls: false
-//     }, function (response, status) {
-//         if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
-//             var distance = response.rows[0].elements[0].distance.text;
-//             var duration = response.rows[0].elements[0].duration.text;
-//             var dvDistance = document.getElementById("dvDistance");
-//            dvDistance.innerHTML = "";
-//             dvDistance.innerHTML += "Distance: " + distance + "<br />";
-//             dvDistance.innerHTML += "Duration:" + duration;
-
-//         } else {
-//             alert("Unable to find the distance via road.");
-//         }
-//     });
-//   }
-
-// test
 function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
         destination: destination,
-        //   waypoints: [{location: 'Adelaide, SA'}, {location: 'Broken Hill, NSW'}],
         travelMode: 'DRIVING',
         avoidTolls: true
     },
@@ -291,6 +250,6 @@ function computeTotalDistance(result) {
 
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
+        markers[i].setMap(map);
     }
-  }
+}
