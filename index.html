@@ -81,6 +81,11 @@
                             <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
                         </a>
                     </li>
+                    <li>
+                        <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#route">
+                            <i class="fa fa-motorcycle" aria-hidden="true"></i>Detail Route
+                        </a>
+                    </li>
                 </ul>
             </li>
             <!--/. Side navigation links -->
@@ -95,17 +100,21 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-            <button type="button" class="btn btn-primary" style="margin-left:5%" onclick="nearbyHostel()">
+            <button type="button" class="btn btn-primary" style="margin-left:7px"  onclick="nearbyHostel()">
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-            <button type="button" class="btn btn-warning" onclick="nearbyTour();">
+            <button type="button" class="btn btn-warning"  onclick="nearbyTour();">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
-            <button type="button" class="btn btn-danger" onclick="nearbyRes()">
+            <button type="button" class="btn btn-danger"  onclick="nearbyRes()">
                 <i class="fa fa-cutlery"></i>
                 <span class="clearfix d-none d-sm-inline-block">Restaurant</span>
+            </button>
+            <button type="button" class="btn btn-success" onclick="getRoute()">
+                <i class="fa fa-motorcycle"></i>
+                <span class="clearfix d-none d-sm-inline-block">Get Route</span>
             </button>
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <div id="signout">
@@ -136,11 +145,11 @@
     
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
-    <button type="button" onclick="getRoute()">GetRoute</button>
+    <!-- <button type="button" onclick="getRoute()">GetRoute</button> -->
 
-    <div id="right-panel" style="width: 20%; height: 30%;">
+    <!-- <div id="right-panel" style="width: 20%; height: 50px;">
         <p>Total Distance: <span id="total"></span></p>
-      </div>
+      </div> -->
 
     <!--Account popup-->
 
@@ -480,6 +489,21 @@
                         </form>
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Route popup-->
+
+    <div class="modal fade" id="route" style="z-index:9999999;">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content" style="height:550px;padding: 2%;">
+                <div class="title">Route
+                </div>
+                    <h6>Total Distance: <span id="total"></span></h6>
+                    <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;">
+                    </div>
+
             </div>
         </div>
     </div>

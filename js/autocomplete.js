@@ -28,7 +28,7 @@ function getRoute() {
     directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
-        panel: document.getElementById('right-panel')
+        panel: document.getElementById('route-panel')
     });
     directionsDisplay.addListener('directions_changed', function () {
         computeTotalDistance(directionsDisplay.getDirections());
@@ -178,10 +178,22 @@ function nearbyTour() {
         radius: radius,
         type: ['movie_theater']
     };
+    var requestNight = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['night_club']
+    };
+    var requestAmuusement = {
+        location: myCurrentLocate,
+        radius: radius,
+        type: ['amusement_park']
+    };
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch(requestShop, callback);
     service.nearbySearch(requestPark, callback);
     service.nearbySearch(requestMovie, callback);
+    service.nearbySearch(requestNight, callback);
+    service.nearbySearch(requestAmuusement, callback);
 }
 
 function nearbyRes() {
@@ -221,7 +233,7 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
+//  route detail
 function displayRoute(origin, destination, service, display) {
     service.route({
         origin: origin,
