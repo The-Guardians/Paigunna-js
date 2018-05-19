@@ -56,6 +56,7 @@ function geoLocation(map) {
                 title: "Your Location",
                 icon: "https://www.picz.in.th/images/2018/05/19/zxUpFa.png"
             });
+            marker.setAnimation(google.maps.Animation.BOUNCE);
             markers.push(marker);
             infoWindow.open(map);
             map.setCenter(pos);
@@ -234,6 +235,15 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
+
+    marker.setAnimation(google.maps.Animation.DROP);
+
+    marker.addListener('click' , function(){
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        var markerPos = marker.getPosition();
+        console.log("lat : "+ markerPos.lat() + ", lng : "+markerPos.lng());
+    });
+
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(place.name);
