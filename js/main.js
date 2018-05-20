@@ -7,7 +7,7 @@ document.getElementById('email').style.display = 'none';
 document.getElementById('callService').disabled = true;
 document.getElementById('price').style.display = 'none';
 document.getElementById('itemPay').style.display = 'none';
-document.getElementById('hello007').style.display = 'none';
+// document.getElementById('hello007').style.display = 'none';
 
 function login() {
     document.getElementById('popuplogin').style.display = 'none';
@@ -24,6 +24,6 @@ function callService() {
     document.getElementById('itemPay').style.display = 'block';
 }
 
-function hello() {
-    document.getElementById('hello007').style.display = 'block';
-}
+// function hello() {
+//     document.getElementById('hello007').style.display = 'block';
+// }

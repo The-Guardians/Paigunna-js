@@ -227,7 +227,7 @@
             <div class="modal-content" style="height: 550px;max-height: 550px;">
                 <div class="title">List of travels
                 </div>
-                <div class="list-group" id="hello007">
+                <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                         <span class="closebtn" style="color: red;">&times;</span>
                         <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
@@ -491,11 +491,24 @@
     <!--Route popup-->
 
     <div class="modal fade" id="route" style="z-index:9999999;">
-        <div class="modal-dialog" style="text-align: center">
+        <div class="modal-dialog" >
             <div class="modal-content" style="height:550px;padding: 2%;">
                 <div class="title">Route
                 </div>
-                    <h6>Total Distance: <span id="total2"></span></h6>
+                
+                <div style="margin-left: 1%">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" >
+                Select vehicle
+                </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
+                <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
+                <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
+            </div>
+                </div>
+
+                    <h6 style="text-align: center">Total Distance: <span id="total2"></span></h6>
                     <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;">
                     </div>
 
