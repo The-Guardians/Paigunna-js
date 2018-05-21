@@ -1,4 +1,4 @@
-var map, infowindow, pos;
+var map, infowindow, pos, count = 1, panel,num = 1;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -22,18 +22,24 @@ function getRoute() {
     if (markers != null) {
         setMapOnAll(null);
     }
+    if (count != 1) {
+        directionsDisplay.setMap(null);
+        panel = document.getElementById('route-panel').innerHTML = "";
+    }
+    panel = document.getElementById('route-panel');
     source = pos;
     destination = document.getElementById("searchInput").value;
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer({
         draggable: true,
         map: map,
-        panel: document.getElementById('route-panel')
+        panel: panel
     });
     directionsDisplay.addListener('directions_changed', function () {
         computeTotalDistance(directionsDisplay.getDirections());
     });
     displayRoute(source, destination, directionsService, directionsDisplay);
+    count++;
 }
 
 function geoLocation(map) {
@@ -49,9 +55,14 @@ function geoLocation(map) {
                 title: "Your Location",
                 icon: "https://www.picz.in.th/images/2018/05/19/zxUpFa.png"
             });
+            marker.setAnimation(google.maps.Animation.BOUNCE);
             markers.push(marker);
             infoWindow.open(map);
             map.setCenter(pos);
+
+            console.log("Mylocation:"+"Latitude: " + position.coords.latitude + 
+            ",Longitude: " + position.coords.longitude);
+
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
             infoWindow.setPosition(map.getCenter());
@@ -141,7 +152,7 @@ var radius = '3000';
 var service;
 
 function nearbyHostel() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -157,7 +168,7 @@ function nearbyHostel() {
 }
 
 function nearbyTour() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -197,7 +208,7 @@ function nearbyTour() {
 }
 
 function nearbyRes() {
-    if (input.value != "") {
+    if ((input.value != "")||(num != 1)) {
         directionsDisplay.setMap(null);
     }
     setMapOnAll(null);
@@ -227,6 +238,36 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
+
+    marker.setAnimation(google.maps.Animation.DROP);
+
+    marker.addListener('click', function () {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        var markerPos = marker.getPosition();
+        console.log("lat : " + markerPos.lat() + ", lng : " + markerPos.lng());
+        if (markers != null) {
+            setMapOnAll(null);
+        }
+        if (num != 1) {
+            panel = document.getElementById('route-panel').innerHTML = "";
+        }
+        panel = document.getElementById('route-panel');
+        source = pos;
+        destination = new google.maps.LatLng(markerPos.lat(), markerPos.lng())
+        console.log(destination.value);/************************/
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map,
+            panel: panel
+        });
+        directionsDisplay.addListener('directions_changed', function () {
+            computeTotalDistance(directionsDisplay.getDirections());
+        });
+        displayRoute(source, destination, directionsService, directionsDisplay);
+        num ++;
+    });
+
     markers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent(place.name);
@@ -257,7 +298,9 @@ function computeTotalDistance(result) {
         total += myroute.legs[i].distance.value;
     }
     total = total / 1000;
-    document.getElementById('total','total2').innerHTML = total + ' km';
+    document.getElementById('total').innerHTML = total + ' km';
+    document.getElementById('totalTravel').innerHTML = 'item #1 (' + total + 'km)';
+    document.getElementById('destination').innerHTML = input.value;
 }
 
 function setMapOnAll(map) {

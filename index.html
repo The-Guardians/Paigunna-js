@@ -19,7 +19,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 
-<body class="fixed-sn black-skin">
+<body class="fixed-sn black-skin" onload="zeroNumber()">
     <!--Double navigation-->
     <header>
         <!-- Sidebar navigation -->
@@ -39,14 +39,9 @@
             <li>
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#travel">
-                            <i class="fa fa-motorcycle" aria-hidden="true"></i>Travel
-                        </a>
-                    </li>
-                    <li>
                         <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#noti">
                             <i class="fa fa-exclamation" aria-hidden="true"></i>Notifications
-                            <span class="badge badge-danger" style="font-size: 10px;float: right;margin-top: 5%;margin-right: 5%">1</span>
+                            <span id="notiminibox" class="badge badge-danger" style="font-size: 12px;float: right;margin-top: 5%;margin-right: 5%"><span id="number">0</span></span>
                         </a>
                     </li>
                     <li>
@@ -81,6 +76,10 @@
                             <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
                         </a>
                     </li>
+                    <li>
+                        <button onclick="increaseNumber()">+</button>
+                        <button onclick="decreaseNumber()">-</button>
+                    </li>
                 </ul>
             </li>
             <!--/. Side navigation links -->
@@ -95,19 +94,19 @@
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-            <button type="button" class="btn btn-primary" onclick="nearbyHostel()" style="margin:5px;">
+            <button type="button" class="btn btn-primary" style="margin-left:1.5%" onclick="nearbyHostel()">
                 <i class="fa fa-bed"></i>
                 <span class="clearfix d-none d-sm-inline-block">Hostel</span>
             </button>
-            <button type="button" class="btn btn-warning"  onclick="nearbyTour();" style="margin:5px;">
+            <button type="button" class="btn btn-warning" style="margin-left:0.5%" onclick="nearbyTour();">
                 <i class="fa fa-suitcase"></i>
                 <span class="clearfix d-none d-sm-inline-block">tourist attraction</span>
             </button>
-            <button type="button" class="btn btn-danger"  onclick="nearbyRes()" style="margin:5px;">
+            <button type="button" class="btn btn-danger" style="margin-left:0.5%" onclick="nearbyRes()">
                 <i class="fa fa-cutlery"></i>
                 <span class="clearfix d-none d-sm-inline-block">Restaurant</span>
             </button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#route" style="margin:5px;">
+            <button type="button" class="btn btn-success" style="margin-left:0.5%" data-toggle="modal" data-target="#route">
                 <i class="fa fa-motorcycle"></i>
                 <span class="clearfix d-none d-sm-inline-block">Route Detail</span>
             </button>
@@ -137,7 +136,7 @@
     <!--Main layout-->
 
     <!--Map-->
-    
+
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
     <!-- <button type="button" onclick="getRoute()">GetRoute</button> -->
@@ -220,49 +219,6 @@
         </div>
     </div>
 
-    <!--Travel popup-->
-
-    <div class="modal fade" id="travel" style="z-index:9999999;">
-        <div class="modal-dialog" style="text-align: center">
-            <div class="modal-content" style="height: 550px;max-height: 550px;">
-                <div class="title">List of travels
-                </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <span class="closebtn" style="color: red;">&times;</span>
-                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
-                            <span id="price" style="float: right;">Price : 10 &#3647</span>
-                            <div class="input-group" style="width: 100%;">
-                                <div class="form-control" style="width: 100%">
-                                    <div class="form-control" style="margin-right: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
-                                    </div>
-                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
-                                    <!-- <span>to</span> -->
-                                    <div class="form-control" style="margin-left: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </h5>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Select vehicle
-                        </button>
-
-                        <button id="callService" type="button" class="btn btn-success">Call service</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
-                            <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
-                            <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--Notification popup-->
 
     <div class="modal fade" id="noti" style="z-index:9999999;">
@@ -271,38 +227,44 @@
                 <div class="title">Notifications
                 </div>
                 <div class="table-responsive">
-                    <div class="alert">
-                        <span class="closebtn">&times;</span>
+
+                        <button onclick="click1();increaseNumber();">alert</button>
+                        <button onclick="click2();increaseNumber();">sucess</button>
+                        <button onclick="click3();increaseNumber();">Info</button>
+                        <button onclick="click4();increaseNumber();">Warning</button>
+
+                    <div id="1" class="alert btn" onclick="close1();decreaseNumber();">
+                        <!-- <span class="closebtn">&times;</span> -->
                         <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-                    <div class="alert success">
-                        <span class="closebtn">&times;</span>
+                    <div id="2" class="alert success btn" onclick="close2();decreaseNumber();">
+                        <!-- <span class="closebtn">&times;</span> -->
                         <strong>Success!</strong> Indicates a successful or positive action.
                     </div>
-                    <div class="alert info">
-                        <span class="closebtn">&times;</span>
+                    <div  id="3" class="alert info btn" onclick="close3();decreaseNumber();">
+                        <!-- <span class="closebtn">&times;</span> -->
                         <strong>Info!</strong> Indicates a neutral informative change or action.
                     </div>
-                    <div class="alert warning">
-                        <span class="closebtn">&times;</span>
+                    <div id="4" class="alert warning btn" onclick="close4();decreaseNumber();">
+                        <!-- <span class="closebtn">&times;</span> -->
                         <strong>Warning!</strong> Indicates a warning that might need attention.
                     </div>
-                    <div class="alert">
+                    <!-- <div class="alert" onclick="decreaseNumber()">
                         <span class="closebtn">&times;</span>
                         <strong>1Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-                    <div class="alert">
+                    <div class="alert" onclick="decreaseNumber()">
                         <span class="closebtn">&times;</span>
                         <strong>2Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-                    <div class="alert">
+                    <div class="alert" onclick="decreaseNumber()">
                         <span class="closebtn">&times;</span>
                         <strong>3Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
-                    <div class="alert">
+                    <div class="alert" onclick="decreaseNumber()">
                         <span class="closebtn">&times;</span>
                         <strong>4Danger!</strong> Indicates a dangerous or potentially negative action.
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -378,7 +340,7 @@
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
+                                    <td>6</td>
                                     <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
@@ -387,7 +349,7 @@
                                     <td>15.00</td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
+                                    <td>7</td>
                                     <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
                                     <td>4.3 km</td>
                                     <td>45 &#3647</td>
@@ -395,33 +357,7 @@
                                     <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                    <td>4.3 km</td>
-                                    <td>45 &#3647</td>
-                                    <td>Taxi</td>
-                                    <td>17-01-16</td>
-                                    <td>15.00</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                    <td>4.3 km</td>
-                                    <td>45 &#3647</td>
-                                    <td>Taxi</td>
-                                    <td>17-01-16</td>
-                                    <td>15.00</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Ramkhamhaeng University - Major Cineplex Ramkhamhaeng</td>
-                                    <td>4.3 km</td>
-                                    <td>45 &#3647</td>
-                                    <td>Taxi</td>
-                                    <td>17-01-16</td>
-                                    <td>15.00</td>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
@@ -456,33 +392,40 @@
 
     <!--Omise popup-->
 
-    <div class="modal fade" id="omise" style="z-index: 9999999999;">
+    <div class="modal fade" id="omise" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content" style="height: 550px;">
                 <div class="title">List of pay
                 </div>
-                <div class="list-group" id="itemPay">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <h5 class="mb-1" style="text-align: left">item #1 (5.2 km)
-                            <span style="float: right;">Price : 10 &#3647</span>
-                            <div class="input-group" style="width: 100%;">
-                                <div class="form-control" style="width: 100%">
-                                    <div class="form-control" style="margin-right: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">My Location</marquee>
-                                    </div>
-                                    <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
-                                    <div class="form-control" style="margin-left: 3%;width: 100%">
-                                        <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">Ramkhamhaeng University</marquee>
+                <div class="list-group">
+                    <div id="itemPay">
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <h5 class="mb-1" style="text-align: left"><label id="totalTravel"></label>
+                                <span style="float: right;">Price : 10 &#3647</span>
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="form-control" style="width: 100%">
+                                        <div class="form-control" style="margin-right: 3%;width: 100%">
+                                            <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">
+                                                Your Location
+                                            </marquee>
+                                        </div>
+                                        <span type="text" style="text-align: center;margin-left: auto;margin-right: auto;"> to </span>
+                                        <div class="form-control" style="margin-left: 3%;width: 100%">
+                                            <marquee direction="left" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="4">
+                                                <label id="destination"></label>
+                                            </marquee>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </h5>
-                        <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
-                            <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
-                                data-frame-description="Merchant site description" data-amount="1000" data-currency="thb" data-button-label="Pay now">
-                                </script>
-                        </form>
-                    </a>
+                            </h5>
+                            <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
+                                <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
+                                    data-frame-description="Merchant site description" data-amount="1000" data-currency="thb"
+                                    data-button-label="Pay now">
+                                    </script>
+                            </form>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -491,39 +434,68 @@
     <!--Route popup-->
 
     <div class="modal fade" id="route" style="z-index:9999999;">
-        <div class="modal-dialog" >
-            <div class="modal-content" style="height:550px;padding: 2%;">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content" style="height:580px;padding: 2%;">
                 <div class="title">Route
                 </div>
-                
-                <div style="margin-left: 1%">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" >
-                Select vehicle
-                </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
-                <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
-                <!-- <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button> -->
-            </div>
+                <div class="list-group" style="z-index: 9999999;">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" style="float: left;" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Select vehicle
+                        </button>
+                        <span id="price" style="float: right;margin-top: 3%">Price : 10 &#3647</span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
+                            <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
+                        </div>
+                    </a>
                 </div>
-
-                    <h6 style="text-align: center">Total Distance: <span id="total2"></span></h6>
-                    <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;">
-                    </div>
-
-                    <button type="button" class="btn btn-primary"  onclick="hello()" style="padding:20px;">
-                        <span>Add to travel</span>
+                <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;margin-top: 4%;">
+                </div>
+                <div class="list-group" id="itemTravel" style="z-index: 9999999;">
+                    <button id="callService" type="button" style="padding: 10px;" class="btn btn-success">
+                        <label style="margin-bottom: 5%" onclick="callService()">Call service
+                            <label>
                     </button>
-
+                </div>
             </div>
         </div>
     </div>
 
     <!-- SCRIPTS -->
-    
+    <script>
+
+        var n = 0;
+        function increaseNumber(){
+        n = n + 1;
+        document.getElementById('number').innerHTML = n;
+        zeroNumber();
+        }
+        function zeroNumber(){
+            if(document.getElementById('number').innerHTML == 0){
+                document.getElementById('notiminibox').style.display = 'none';
+                
+            }
+            else{
+                document.getElementById('notiminibox').style.display = 'block';
+                }
+        }
+        function decreaseNumber(){ 
+        if (n >= 1) 
+        n = n - 1;
+        document.getElementById('number').innerHTML = n;
+        zeroNumber();
+        }
+
+       
+    </script>
+
     <!-- JQuery -->
-    <script type="text/javascript" src="./js/compiled.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="./js/firebaseInit.js" type="text/javascript"></script>
+    <script src="./js/social-login.js" type="text/javascript"></script>
+    <script src="./js/compiled.min.js" type="text/javascript"></script>
     <script src="js/sidenavIniti.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/autocomplete.js" type="text/javascript"></script>
