@@ -417,7 +417,7 @@
                     <div id="itemPay">
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <h5 class="mb-1" style="text-align: left"><label id="totalTravel"></label>
-                                <span style="float: right;">Price : 10 &#3647</span>
+                                <span style="float: right;"><label id="price1"></label></span>
                                 <div class="input-group" style="width: 100%;">
                                     <div class="form-control" style="width: 100%">
                                         <div class="form-control" style="margin-right: 3%;width: 100%">
@@ -435,8 +435,8 @@
                                 </div>
                             </h5>
                             <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
-                                <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Merchant site name"
-                                    data-frame-description="Merchant site description" data-amount="1000" data-currency="thb"
+                                <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Paigunna"
+                                    data-frame-description="Paigunna" data-amount="10000" data-currency="thb"
                                     data-button-label="Pay now">
                                     </script>
                             </form>
@@ -456,14 +456,14 @@
                 </div>
                 <div class="list-group" style="z-index: 9999999;">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" style="float: left;" id="dropdownMenu2" data-toggle="dropdown"
+                        <button id="select" class="btn btn-secondary dropdown-toggle" type="button" style="float: left;" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             Select vehicle
                         </button>
-                        <span id="price" style="float: right;margin-top: 3%">Price : 10 &#3647</span>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" onclick="callService()">Motorcycle</button>
-                            <button class="dropdown-item" type="button" onclick="callService()">Taxi</button>
+                        <span id="price" style="float: right;margin-top: 3%"><label id="price2"></label></span>
+                        <div id="type" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button" value="1" onclick="callService();setTypeMotor();">Motorcycle</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="callService();setTypeTaxi();">Taxi</button>
                         </div>
                     </a>
                 </div>

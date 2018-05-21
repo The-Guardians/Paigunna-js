@@ -8,6 +8,7 @@ document.getElementById('callService').disabled = true;
 document.getElementById('price').style.display = 'none';
 document.getElementById('itemPay').style.display = 'none';
 document.getElementById('omise').style.display = 'none';
+document.getElementById('select').disabled = true;
 
 function login() {
     document.getElementById('popuplogin').style.display = 'none';
