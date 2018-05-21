@@ -1,4 +1,4 @@
-var map, infowindow, pos, count = 1, panel,num = 1;
+var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '2500', service, desName, total = 0, type, rate;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -6,9 +6,6 @@ var mapOption = {
     disableDefaultUI: true,
     zoomControl: true
 };
-var source, destination;
-var directionsService;
-var directionsDisplay;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOption);
@@ -16,15 +13,22 @@ function initMap() {
     // Try HTML5 geolocation.
     geoLocation(map);
     infowindow = searchBox(map, infowindow);
+    if (panel == "") {
+        document.getElementById('select').disabled = true;
+    }
 }
 
 function getRoute() {
+
     if (markers != null) {
         setMapOnAll(null);
     }
-    if (count != 1) {
+    if (directionsDisplay != null) {
         directionsDisplay.setMap(null);
         panel = document.getElementById('route-panel').innerHTML = "";
+        document.getElementById('callService').disabled = true;
+        document.getElementById('itemPay').style.display = 'none';
+        document.getElementById('price').style.display = 'none';
     }
     panel = document.getElementById('route-panel');
     source = pos;
@@ -39,7 +43,9 @@ function getRoute() {
         computeTotalDistance(directionsDisplay.getDirections());
     });
     displayRoute(source, destination, directionsService, directionsDisplay);
-    count++;
+    if (panel != "") {
+        document.getElementById('select').disabled = false;
+    }
 }
 
 function geoLocation(map) {
@@ -82,9 +88,9 @@ function geoLocation(map) {
         infoWindow.open(map);
     }
 }
-var input;
+
 function searchBox(map, infowindow) {
-    input = document.getElementById('searchInput');
+    var input = document.getElementById('searchInput');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
@@ -105,9 +111,11 @@ function searchBox(map, infowindow) {
         // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
             map.fitBounds(place.geometry.viewport);
-            if (input.value != "") {
-                getRoute();
+            if (directionsDisplay == null) {
+                document.getElementById('select').disabled = true;
             }
+            getRoute();
+            desName = input.value;
         }
         else {
             map.setCenter(place.geometry.location);
@@ -148,13 +156,8 @@ function searchBox(map, infowindow) {
     return infowindow;
 }
 
-var radius = '3000';
-var service;
-
 function nearbyHostel() {
-    if ((input.value != "")||(num != 1)) {
-        directionsDisplay.setMap(null);
-    }
+    document.getElementById('select').disabled = true;
     setMapOnAll(null);
     geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
@@ -168,9 +171,7 @@ function nearbyHostel() {
 }
 
 function nearbyTour() {
-    if ((input.value != "")||(num != 1)) {
-        directionsDisplay.setMap(null);
-    }
+    document.getElementById('select').disabled = true;
     setMapOnAll(null);
     geoLocation(map);
     var myCurrentLocate = new google.maps.LatLng(pos);
@@ -208,9 +209,7 @@ function nearbyTour() {
 }
 
 function nearbyRes() {
-    if ((input.value != "")||(num != 1)) {
-        directionsDisplay.setMap(null);
-    }
+    document.getElementById('select').disabled = true;
     setMapOnAll(null);
     geoLocation(map);
     let myCurrentLocate = new google.maps.LatLng(pos);
@@ -240,32 +239,18 @@ function createMarker(place) {
     });
 
     marker.setAnimation(google.maps.Animation.DROP);
-
+    if (directionsDisplay != null) {
+        directionsDisplay.setMap(null);
+        panel = document.getElementById('route-panel').innerHTML = "";
+        document.getElementById('callService').disabled = true;
+        document.getElementById('itemPay').style.display = 'none';
+        document.getElementById('price').style.display = 'none';
+    }
     marker.addListener('click', function () {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         var markerPos = marker.getPosition();
         console.log("lat : " + markerPos.lat() + ", lng : " + markerPos.lng());
-        if (markers != null) {
-            setMapOnAll(null);
-        }
-        if (num != 1) {
-            panel = document.getElementById('route-panel').innerHTML = "";
-        }
-        panel = document.getElementById('route-panel');
-        source = pos;
-        destination = new google.maps.LatLng(markerPos.lat(), markerPos.lng())
-        console.log(destination.value);/************************/
-        directionsService = new google.maps.DirectionsService;
-        directionsDisplay = new google.maps.DirectionsRenderer({
-            draggable: true,
-            map: map,
-            panel: panel
-        });
-        directionsDisplay.addListener('directions_changed', function () {
-            computeTotalDistance(directionsDisplay.getDirections());
-        });
-        displayRoute(source, destination, directionsService, directionsDisplay);
-        num ++;
+        getRouteSearch(markerPos, place);
     });
 
     markers.push(marker);
@@ -274,6 +259,29 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
+function getRouteSearch(markerPos, place) {
+    if (markers != null) {
+        setMapOnAll(null);
+    }
+    panel = document.getElementById('route-panel');
+    source = pos;
+    destination = new google.maps.LatLng(markerPos.lat(), markerPos.lng());
+    desName = place.name;
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: map,
+        panel: panel
+    });
+    directionsDisplay.addListener('directions_changed', function () {
+        computeTotalDistance(directionsDisplay.getDirections());
+    });
+    displayRoute(source, destination, directionsService, directionsDisplay);
+    if (panel != "") {
+        document.getElementById('select').disabled = false;
+    }
+}
+
 //  route detail
 function displayRoute(origin, destination, service, display) {
     service.route({
@@ -292,19 +300,45 @@ function displayRoute(origin, destination, service, display) {
 }
 
 function computeTotalDistance(result) {
-    var total = 0;
     var myroute = result.routes[0];
     for (var i = 0; i < myroute.legs.length; i++) {
         total += myroute.legs[i].distance.value;
     }
     total = total / 1000;
     document.getElementById('total').innerHTML = total + ' km';
-    document.getElementById('totalTravel').innerHTML = 'item #1 (' + total + 'km)';
-    document.getElementById('destination').innerHTML = input.value;
+    document.getElementById('totalTravel').innerHTML = 'item #1 (' + total.toFixed(2) + 'km)';
+    document.getElementById('destination').innerHTML = desName;
 }
 
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
     }
+}
+
+function setTypeMotor() {
+    type = "motor";
+    rate = 15;
+    calPrice(rate);
+}
+
+function setTypeTaxi() {
+    type = "taxi";
+    rate = 25;
+    calPrice(rate);
+
+}
+
+function calPrice(rate) {
+    var price1, price2;
+    price1 = document.getElementById('price1');
+    price2 = document.getElementById('price2');
+    if (price1 != "") {
+        price1.innerHTML = "";
+    }
+    if (price2 != "") {
+        price2.innerHTML = "";
+    }
+    price1.innerHTML = 'Price : ' + (total * rate).toFixed(2) + ' &#3647';
+    price2.innerHTML = 'Price : ' + (total * rate).toFixed(2) + ' &#3647';
 }
