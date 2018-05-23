@@ -19,7 +19,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 
-<body class="fixed-sn black-skin" onload="zeroNumber()">
+<body class="fixed-sn black-skin" onload="notibox()">
     <!--Double navigation-->
     <header>
         <!-- Sidebar navigation -->
@@ -226,14 +226,15 @@
             <div class="modal-content" style="height:550px;padding: 2%;">
                 <div class="title">Notifications
                 </div>
-                <div class="table-responsive">
+                
+                <div id="notimodule" class="table-responsive">
 
-                        <button onclick="click1();increaseNumber();">alert</button>
+                        <button onclick="click1();increaseNumber();genBlocknoti();">alert</button>
                         <button onclick="click2();increaseNumber();">sucess</button>
                         <button onclick="click3();increaseNumber();">Info</button>
                         <button onclick="click4();increaseNumber();">Warning</button>
 
-                    <div id="1" class="alert btn" onclick="close1();decreaseNumber();">
+                    <div id="1" class="alert btn box1" onclick="close1();decreaseNumber();">
                         <!-- <span class="closebtn">&times;</span> -->
                         <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div>
@@ -265,7 +266,7 @@
                         <span class="closebtn">&times;</span>
                         <strong>4Danger!</strong> Indicates a dangerous or potentially negative action.
                     </div> -->
-                </div>
+                </div>  
             </div>
         </div>
     </div>
@@ -486,6 +487,24 @@
         n = n - 1;
         document.getElementById('number').innerHTML = n;
         zeroNumber();
+        }
+
+
+        function genBlocknoti() {
+            // var para = document.createElement("div");
+            // var t = document.createTextNode("This is a paragraph.");
+            // para.appendChild(t);    
+            // document.getElementById("notimodule").appendChild(t);
+
+            // var g = document.createElement('div');
+            // g.setAttribute("id", '1'); 
+            // document.getElementById("notimodule").appendChild('1');
+
+            var myElement = document.createElement("div");
+            myElement.id = '1';
+            // myElement.classList.add("box1");
+            document.getElementById("notimodule").appendChild(myElement);
+            console.dir(myElement);
         }
 
        

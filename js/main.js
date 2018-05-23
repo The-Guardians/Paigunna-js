@@ -66,7 +66,7 @@ function inceaseNumber(){
     document.getElementById('number').innerHTML = n;
     zeroNumber();
 }
-function zeroNumber(){
+function notibox(){
     if(document.getElementById('number').innerHTML == 0){
         document.getElementById('notiminibox').style.display = 'none';
         
@@ -82,3 +82,8 @@ function decreaseNumber(){
         document.getElementById('number').innerHTML = n;
         zeroNumber();
 }
+
+// function genBlocknoti() {
+//     var btn = document.createElement("div1");
+//     document.body.appendChild(btn);
+// }
