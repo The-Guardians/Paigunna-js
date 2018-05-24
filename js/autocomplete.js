@@ -66,8 +66,8 @@ function geoLocation(map) {
             infoWindow.open(map);
             map.setCenter(pos);
 
-            console.log("Mylocation:"+"Latitude: " + position.coords.latitude + 
-            ",Longitude: " + position.coords.longitude);
+            console.log("Mylocation:" + "Latitude: " + position.coords.latitude +
+                ",Longitude: " + position.coords.longitude);
 
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
@@ -319,17 +319,18 @@ function setMapOnAll(map) {
 function setTypeMotor() {
     type = "motor";
     rate = 15;
-    calPrice(rate);
+    calPrice(0, rate);
 }
 
 function setTypeTaxi() {
     type = "taxi";
     rate = 25;
-    calPrice(rate);
+    // start = 35;
+    calPrice(35, rate);
 
 }
 
-function calPrice(rate) {
+function calPrice(start, rate) {
     var price1, price2;
     price1 = document.getElementById('price1');
     price2 = document.getElementById('price2');
@@ -339,6 +340,6 @@ function calPrice(rate) {
     if (price2 != "") {
         price2.innerHTML = "";
     }
-    price1.innerHTML = 'Price : ' + (total * rate).toFixed(2) + ' &#3647';
-    price2.innerHTML = 'Price : ' + (total * rate).toFixed(2) + ' &#3647';
+    price1.innerHTML = 'Price : ' + ((total * rate) + start).toFixed(2) + ' &#3647';
+    price2.innerHTML = 'Price : ' + ((total * rate) + start).toFixed(2) + ' &#3647';
 }

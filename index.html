@@ -17,9 +17,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+    <script src="_assets/js/jquery.js" type="text/javascript"></script>
+<script src="_assets/js/jquery.ui.draggable.js" type="text/javascript"></script>    
+<script src="_assets/js/jquery.alerts.js" type="text/javascript"></script>
+<link href="_assets/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+
 </head>
 
-<body class="fixed-sn black-skin" onload="notibox()">
+<body class="fixed-sn black-skin" onload="zeroNumber()">
+    
     <!--Double navigation-->
     <header>
         <!-- Sidebar navigation -->
@@ -229,44 +236,24 @@
                 
                 <div id="notimodule" class="table-responsive">
 
-                        <button onclick="click1();increaseNumber();genBlocknoti();">alert</button>
-                        <button onclick="click2();increaseNumber();">sucess</button>
-                        <button onclick="click3();increaseNumber();">Info</button>
-                        <button onclick="click4();increaseNumber();">Warning</button>
+                        <button onclick="click1();increaseNumber();alertPopup();addNotibox();">alert</button>
+                        <button onclick="click2();increaseNumber();alertPopup();">sucess</button>
+                        <button onclick="click3();increaseNumber();alertPopup();">Info</button>
+                        <button onclick="click4();increaseNumber();alertPopup();">Warning</button>
 
-                    <div id="1" class="alert btn box1" onclick="close1();decreaseNumber();">
-                        <!-- <span class="closebtn">&times;</span> -->
-                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                    <div id="1" class="alert btn" onclick="close1();decreaseNumber();">
+                        <strong>Error!</strong> Your request has a problem.
                     </div>
                     <div id="2" class="alert success btn" onclick="close2();decreaseNumber();">
-                        <!-- <span class="closebtn">&times;</span> -->
-                        <strong>Success!</strong> Indicates a successful or positive action.
+                        <strong>Success!</strong> job successful.
                     </div>
                     <div  id="3" class="alert info btn" onclick="close3();decreaseNumber();">
-                        <!-- <span class="closebtn">&times;</span> -->
-                        <strong>Info!</strong> Indicates a neutral informative change or action.
+                        <strong>Info!</strong> User call service at Ramkhamhaeng.
                     </div>
                     <div id="4" class="alert warning btn" onclick="close4();decreaseNumber();">
-                        <!-- <span class="closebtn">&times;</span> -->
                         <strong>Warning!</strong> Indicates a warning that might need attention.
                     </div>
-                    <!-- <div class="alert" onclick="decreaseNumber()">
-                        <span class="closebtn">&times;</span>
-                        <strong>1Danger!</strong> Indicates a dangerous or potentially negative action.
-                    </div>
-                    <div class="alert" onclick="decreaseNumber()">
-                        <span class="closebtn">&times;</span>
-                        <strong>2Danger!</strong> Indicates a dangerous or potentially negative action.
-                    </div>
-                    <div class="alert" onclick="decreaseNumber()">
-                        <span class="closebtn">&times;</span>
-                        <strong>3Danger!</strong> Indicates a dangerous or potentially negative action.
-                    </div>
-                    <div class="alert" onclick="decreaseNumber()">
-                        <span class="closebtn">&times;</span>
-                        <strong>4Danger!</strong> Indicates a dangerous or potentially negative action.
-                    </div> -->
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -456,7 +443,7 @@
                 </div>
                 <div class="list-group" id="itemTravel" style="z-index: 9999999;">
                     <button id="callService" type="button" style="padding: 10px;" class="btn btn-success">
-                        <label style="margin-bottom: 5%" onclick="callService()">Call service
+                        <label style="margin-bottom: 5%" onclick="callService();click3();increaseNumber();alertPopup();">Call service
                             <label>
                     </button>
                 </div>
@@ -465,50 +452,6 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script>
-
-        var n = 0;
-        function increaseNumber(){
-        n = n + 1;
-        document.getElementById('number').innerHTML = n;
-        zeroNumber();
-        }
-        function zeroNumber(){
-            if(document.getElementById('number').innerHTML == 0){
-                document.getElementById('notiminibox').style.display = 'none';
-                
-            }
-            else{
-                document.getElementById('notiminibox').style.display = 'block';
-                }
-        }
-        function decreaseNumber(){ 
-        if (n >= 1) 
-        n = n - 1;
-        document.getElementById('number').innerHTML = n;
-        zeroNumber();
-        }
-
-
-        function genBlocknoti() {
-            // var para = document.createElement("div");
-            // var t = document.createTextNode("This is a paragraph.");
-            // para.appendChild(t);    
-            // document.getElementById("notimodule").appendChild(t);
-
-            // var g = document.createElement('div');
-            // g.setAttribute("id", '1'); 
-            // document.getElementById("notimodule").appendChild('1');
-
-            var myElement = document.createElement("div");
-            myElement.id = '1';
-            // myElement.classList.add("box1");
-            document.getElementById("notimodule").appendChild(myElement);
-            console.dir(myElement);
-        }
-
-       
-    </script>
 
     <!-- JQuery -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
@@ -518,7 +461,7 @@
     <script src="js/sidenavIniti.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <script src="js/autocomplete.js" type="text/javascript"></script>
-    <!-- <script src="js/test.js" type="text/javascript"></script> -->
+    <script src="js/noti.js" type="text/javascript"></script>
     <script src="js/nearby.js" type="text/javascript"></script>
     <script src="js/closenoti.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&sensor=false&libraries=places&callback=initMap"
