@@ -24,15 +24,32 @@
     <header>
         <!-- Sidebar navigation -->
         <ul id="slide-out" class="side-nav fixed sn-bg-4 custom-scrollbar">
-            <!-- Logo -->
-            <li>
-                <div>
-                    <a href="#" style="text-align: center;">
-                        <img class="circle" style="margin-bottom: auto;max-width: 180%;max-height: 200%;text-align: center;" src="resources/wasin.jpg">
-                    </a>
+            <div id="logoDefault">
+                <!-- Logo -->
+                <li>
+                    <div>
+                        <a href="#" style="text-align: center;">
+                            <img class="circle" style="margin-bottom: auto;max-width: 180%;max-height: 200%;text-align: center;" src="https://www.picz.in.th/images/2018/05/23/zD0Iuk.png">
+                        </a>
+                    </div>
+                </li>
+                <div style="text-align: center; margin-top: 40%;margin-bottom: 8%;font-weight: bold;">
+                    Paigunna
                 </div>
-            </li>
-            <div style="text-align: center; margin-top: 40%;margin-bottom: 8%;font-weight: bold;">Wasin</div>
+            </div>
+            <div id="cusNameAndLogo">
+                <li>
+                    <div>
+                        <a href="#" style="text-align: center;">
+                            <img class="circle" style="margin-bottom: auto;max-width: 180%;max-height: 200%;text-align: center;" id="cusLogo">
+                        </a>
+                    </div>
+                </li>
+                <!-- /Logo -->
+                <div style="text-align: center; margin-top: 40%;margin-bottom: 8%;font-weight: bold;">
+                    <label id="cusName"></label>
+                </div>
+            </div>
             <div style="text-align: center;">Service
                 <input type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="&#10003" data-off="&#x2718">
             </div>
@@ -41,7 +58,9 @@
                     <li>
                         <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#noti">
                             <i class="fa fa-exclamation" aria-hidden="true"></i>Notifications
-                            <span id="notiminibox" class="badge badge-danger" style="font-size: 12px;float: right;margin-top: 5%;margin-right: 5%"><span id="number">0</span></span>
+                            <span id="notiminibox" class="badge badge-danger" style="font-size: 12px;float: right;margin-top: 5%;margin-right: 5%">
+                                <span id="number">0</span>
+                            </span>
                         </a>
                     </li>
                     <li>
@@ -50,9 +69,6 @@
                         </a>
                     </li>
                     <li>
-                        <!-- <a class="collapsible-header waves-effect arrow-r" data-toggle="modal" data-target="#help">
-                            <i class="fa fa-warning" aria-hidden="true"></i>Help
-                        </a> -->
                         <a class="collapsible-header waves-effect arrow-r">
                             <i class="fa fa-book" aria-hidden="true"></i>Manual
                             <i class="fa fa-angle-down rotate-icon"></i>
@@ -111,7 +127,7 @@
                 <span class="clearfix d-none d-sm-inline-block">Route Detail</span>
             </button>
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
-                <div id="signout">
+                <div id="accountbtn">
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#account">
                             <i class="fa fa-user"></i>
@@ -119,7 +135,7 @@
                         </a>
                     </li>
                 </div>
-                <div id="signout1">
+                <div id="signoutbtn">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html" style="color: red;">
                             <i class="fa fa-sign-out"></i>
@@ -139,11 +155,6 @@
 
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
     <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
-    <!-- <button type="button" onclick="getRoute()">GetRoute</button> -->
-
-    <!-- <div id="right-panel" style="width: 20%; height: 50px;">
-        <p>Total Distance: <span id="total"></span></p>
-      </div> -->
 
     <!--Account popup-->
 
@@ -152,17 +163,18 @@
             <div class="modal-content">
                 <div class="w3-center">
                     <br>
-                    <img style="border-radius: 50%; height: 30%; width: 30%;" src="resources/wasin.jpg" alt="Avatar">
+                    <img style="border-radius: 50%; height: 30%; width: 30%;" id="cusLogo1" alt="Avatar">
+                    <!-- <img style="border-radius: 50%; height: 30%; width: 30%;" src="resources/wasin.jpg" alt="Avatar"> -->
                 </div>
                 <div class="container">
                     <br>
                     <tr>
                         <td>
-                            <label>Full Name</label>
+                            <label style="font-weight: bold">Full Name</label>
                         </td>
                         <div id="name">
                             <td>
-                                <input type="text" placeholder="Wasin Singhanan" style="text-align: center;width: 81%;" readonly>
+                                <input id="fullName" type="text" style="text-align: center;width: 81%;" readonly>
                                 <br>
                             </td>
                         </div>
@@ -174,7 +186,7 @@
                         </td>
                         <div id="tel">
                             <td>
-                                <input type="text" placeholder=088-888-8888 style="text-align: center;width: 81%;" readonly>
+                                <input id="telephone" type="text" style="text-align: center;width: 81%;" readonly>
                                 <br>
                             </td>
                         </div>
@@ -186,7 +198,7 @@
                         </td>
                         <div id="email">
                             <td>
-                                <input type="text" placeholder=example@mail.com style="width: 77%; text-align: center; margin-bottom: 20px" readonly>
+                                <input id="mail" type="text" style="width: 77%; text-align: center; margin-bottom: 20px" readonly>
                                 <br>
                             </td>
                         </div>
@@ -195,6 +207,8 @@
             </div>
         </div>
     </div>
+
+    <!--/Account popup-->
 
     <!--Login popup-->
 
@@ -219,6 +233,8 @@
         </div>
     </div>
 
+    <!--/Login popup-->
+
     <!--Notification popup-->
 
     <div class="modal fade" id="noti" style="z-index:9999999;">
@@ -228,10 +244,10 @@
                 </div>
                 <div class="table-responsive">
 
-                        <button onclick="click1();increaseNumber();">alert</button>
-                        <button onclick="click2();increaseNumber();">sucess</button>
-                        <button onclick="click3();increaseNumber();">Info</button>
-                        <button onclick="click4();increaseNumber();">Warning</button>
+                    <button onclick="click1();increaseNumber();">alert</button>
+                    <button onclick="click2();increaseNumber();">sucess</button>
+                    <button onclick="click3();increaseNumber();">Info</button>
+                    <button onclick="click4();increaseNumber();">Warning</button>
 
                     <div id="1" class="alert btn" onclick="close1();decreaseNumber();">
                         <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
@@ -239,7 +255,7 @@
                     <div id="2" class="alert success btn" onclick="close2();decreaseNumber();">
                         <strong>Success!</strong> Indicates a successful or positive action.
                     </div>
-                    <div  id="3" class="alert info btn" onclick="close3();decreaseNumber();">
+                    <div id="3" class="alert info btn" onclick="close3();decreaseNumber();">
                         <strong>Info!</strong> Indicates a neutral informative change or action.
                     </div>
                     <div id="4" class="alert warning btn" onclick="close4();decreaseNumber();">
@@ -249,6 +265,8 @@
             </div>
         </div>
     </div>
+
+    <!--/Notification popup-->
 
     <!--History popup-->
 
@@ -337,7 +355,7 @@
                                     <td>17-01-16</td>
                                     <td>15.00</td>
                                 </tr>
-                               
+
                             </tbody>
                         </table>
                     </div>
@@ -345,6 +363,8 @@
             </div>
         </div>
     </div>
+
+    <!--/History popup-->
 
     <!--Help popup-->
 
@@ -370,6 +390,8 @@
         </div>
     </div>
 
+    <!--/Help popup-->
+
     <!--Omise popup-->
 
     <div class="modal fade" id="omise" style="z-index:9999999;">
@@ -380,8 +402,11 @@
                 <div class="list-group">
                     <div id="itemPay">
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <h5 class="mb-1" style="text-align: left"><label id="totalTravel"></label>
-                                <span style="float: right;"><label id="price1"></label></span>
+                            <h5 class="mb-1" style="text-align: left">
+                                <label id="totalTravel"></label>
+                                <span style="float: right;">
+                                    <label id="price1"></label>
+                                </span>
                                 <div class="input-group" style="width: 100%;">
                                     <div class="form-control" style="width: 100%">
                                         <div class="form-control" style="margin-right: 3%;width: 100%">
@@ -398,11 +423,11 @@
                                     </div>
                                 </div>
                             </h5>
+                            <h6 style="color: orangered;">*** credit card charge : 3.65% ***</h6>
+                            <h6 id="totalAmount" style="color: orangered;"></h6>
                             <form class="checkout-form" name="checkoutForm" method="POST" action="/checkout">
                                 <script type="text/javascript" src="https://cdn.omise.co/omise.js" data-key="YOUR_PUCLIC_KEY" data-frame-label="Paigunna"
-                                    data-frame-description="Paigunna" data-amount="10000" data-currency="thb"
-                                    data-button-label="Pay now">
-                                    </script>
+                                    data-frame-description="Paigunna" data-amount="10000" data-currency="thb" data-button-label="Pay now"></script>
                             </form>
                         </a>
                     </div>
@@ -410,6 +435,8 @@
             </div>
         </div>
     </div>
+
+    <!--/Omise popup-->
 
     <!--Route popup-->
 
@@ -424,7 +451,9 @@
                             aria-haspopup="true" aria-expanded="false">
                             Select vehicle
                         </button>
-                        <span id="price" style="float: right;margin-top: 3%"><label id="price2"></label></span>
+                        <span id="price" style="float: right;margin-top: 3%">
+                            <label id="price2"></label>
+                        </span>
                         <div id="type" class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <button class="dropdown-item" type="button" value="1" onclick="callService();setTypeMotor();">Motorcycle</button>
                             <button class="dropdown-item" type="button" value="2" onclick="callService();setTypeTaxi();">Taxi</button>
@@ -456,6 +485,7 @@
     <script src="js/noti.js" type="text/javascript"></script>
     <script src="js/nearby.js" type="text/javascript"></script>
     <script src="js/closenoti.js" type="text/javascript"></script>
+    <script src="js/account.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&sensor=false&libraries=places&callback=initMap"
         async defer></script>
     <script src="https://cdn.omise.co/omise.js"></script>
