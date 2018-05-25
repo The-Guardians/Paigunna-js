@@ -235,6 +235,59 @@
 
     <!--/Login popup-->
 
+    <!--Route popup-->
+
+    <div class="modal fade" id="route" style="z-index:9999999;">
+        <div class="modal-dialog" style="text-align: center">
+            <div class="modal-content" style="height:580px;padding: 2%;">
+                <div class="title">Route
+                </div>
+                <div class="list-group" style="z-index: 9999999;">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <button id="select" class="btn btn-secondary dropdown-toggle" type="button" style="float: left;" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Select vehicle
+                        </button>
+                        <span id="price" style="float: right;margin-top: 3%">
+                            <label id="price2"></label>
+                        </span>
+                        <div id="type" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button" value="1" onclick="callService();setTypeMotor();">Motorcycle</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="callService();setTypeTaxi();">Taxi</button>
+                        </div>
+                    </a>
+                </div>
+                <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;margin-top: 4%;">
+                </div>
+                <div id="call" class="list-group" style="z-index: 9999999;">
+                    <button id="callService" type="button" style="padding: 10px;" class="btn btn-success" onclick="wait();time();">
+                        <label style="margin-bottom: 5%" >Call service
+                            <label>
+                    </button>
+                </div>
+                <div id="wait" class="list-group" style="z-index: 9999999;">
+                    <button type="button" style="padding: 10px;" class="btn btn-warning" onclick="callService();clearTime();">
+                        <span style="margin-bottom: 5%" id="show_text"></span>
+                    </button>
+                </div>
+                <div id="coming" class="list-group" style="z-index: 9999999;">
+                    <button id="service" type="button" style="padding: 10px;" class="btn btn-danger">
+                        <label style="margin-bottom: 5%">Service is coming
+                            <label>
+                    </button>
+                </div>
+                <div id="test" class="list-group" style="z-index: 9999999;">
+                        <button type="button" style="padding: 10px;" class="btn btn-danger" onclick="coming()">
+                            <label style="margin-bottom: 5%">test(ถ้ามีคนกดรับ)
+                                <label>
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!--/Route popup-->
+
     <!--Notification popup-->
 
     <div class="modal fade" id="noti" style="z-index:9999999;">
@@ -438,40 +491,6 @@
 
     <!--/Omise popup-->
 
-    <!--Route popup-->
-
-    <div class="modal fade" id="route" style="z-index:9999999;">
-        <div class="modal-dialog" style="text-align: center">
-            <div class="modal-content" style="height:580px;padding: 2%;">
-                <div class="title">Route
-                </div>
-                <div class="list-group" style="z-index: 9999999;">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <button id="select" class="btn btn-secondary dropdown-toggle" type="button" style="float: left;" id="dropdownMenu2" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Select vehicle
-                        </button>
-                        <span id="price" style="float: right;margin-top: 3%">
-                            <label id="price2"></label>
-                        </span>
-                        <div id="type" class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button" value="1" onclick="callService();setTypeMotor();">Motorcycle</button>
-                            <button class="dropdown-item" type="button" value="2" onclick="callService();setTypeTaxi();">Taxi</button>
-                        </div>
-                    </a>
-                </div>
-                <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;margin-top: 4%;">
-                </div>
-                <div class="list-group" id="itemTravel" style="z-index: 9999999;">
-                    <button id="callService" type="button" style="padding: 10px;" class="btn btn-success">
-                        <label style="margin-bottom: 5%" onclick="callService()">Call service
-                            <label>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
@@ -486,6 +505,7 @@
     <script src="js/nearby.js" type="text/javascript"></script>
     <script src="js/closenoti.js" type="text/javascript"></script>
     <script src="js/account.js" type="text/javascript"></script>
+    <script src="js/time.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwwxCwc_Bj6e8Z3qg_9Mu8dFATO_s49lg&sensor=false&libraries=places&callback=initMap"
         async defer></script>
     <script src="https://cdn.omise.co/omise.js"></script>

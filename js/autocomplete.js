@@ -1,4 +1,4 @@
-var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, total;
+var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, totalDistance;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -298,7 +298,7 @@ function displayRoute(origin, destination, service, display) {
                 display.setDirections(response);
                 km = route.legs[0].distance.text;
                 kmSplit = km.split(" ");
-                total = kmSplit[0];
+                totalDistance = kmSplit[0];
             } else {
                 alert('Could not display directions due to: ' + status);
             }
@@ -310,9 +310,7 @@ function computeTotalDistance(result) {
     for (var i = 0; i < myroute.legs.length; i++) {
         total += myroute.legs[i].distance.value;
     }
-    document.getElementById('total').innerHTML = total + ' km';
-    document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + total + ' km)';
-    document.getElementById('destination').innerHTML = desName;
+    total = total / 1000;
 }
 
 function setMapOnAll(map) {
@@ -323,29 +321,21 @@ function setMapOnAll(map) {
 
 function setTypeMotor() {
     type = "motor";
-    console.log(total);
-    if (total <= 1.0) {
+    if (totalDistance <= 1.0) {
         pricemotor = 10;
-        console.log(pricemotor);
-    } else if (total <= 1.3) {
+    } else if (totalDistance <= 1.3) {
         pricemotor = 15;
-        console.log(pricemotor);
-    } else if (total <= 1.6) {
+    } else if (totalDistance <= 1.6) {
         pricemotor = 20;
-        console.log(pricemotor);
-    } else if (total <= 2.0) {
+    } else if (totalDistance <= 2.0) {
         pricemotor = 25;
-        console.log(pricemotor);
-    } else if (total <= 3.0) {
+    } else if (totalDistance <= 3.0) {
         pricemotor = 30;
-        console.log(pricemotor);
-    } else if (total <= 4.0) {
+    } else if (totalDistance <= 4.0) {
         pricemotor = 35;
-        console.log(pricemotor);
-    } else if (total <= 5.0) {
+    } else if (totalDistance <= 5.0) {
         pricemotor = 40;
-        console.log(pricemotor);
-    } else if (total > 5.0) {
+    } else if (totalDistance > 5.0) {
         rate = 10;
     }
     calPrice(0, rate, type);
@@ -353,7 +343,21 @@ function setTypeMotor() {
 
 function setTypeTaxi() {
     type = "taxi";
-    rate = 25;
+    if (totalDistance <= 1.0) {
+        rate = 0;
+    } else if (totalDistance > 1.0 && total <= 10.0) {
+        rate = 5.5;
+    } else if (totalDistance > 10.0 && total <= 20.0) {
+        rate = 6.5;
+    } else if (totalDistance > 20.0 && total <= 40.0) {
+        rate = 7.5;
+    } else if (totalDistance > 40.0 && total <= 60.0) {
+        rate = 8.0;
+    } else if (totalDistance > 60.0 && total <= 80.0) {
+        rate = 9.0;
+    } else if (totalDistance > 80.0) {
+        rate = 10.5;
+    }
     calPrice(35, rate, type);
 }
 
@@ -371,10 +375,10 @@ function calPrice(start, rate, type) {
     if (textTotalAmount != "") {
         textTotalAmount.innerHTML = "";
     }
+    amount = ((totalDistance * rate) + start);
+    totalAmount = (((0.0365) * amount) + amount).toFixed(2);
     if (type == "motor") {
-        amount = ((total * rate) + start);
-        totalAmount = (((0.0365) * amount) + amount).toFixed(2);
-        if (total > 5.0) {
+        if (totalDistance > 5.0) {
             price1.innerHTML = 'Price : ' + amount + ' &#3647';
             price2.innerHTML = 'Price : ' + amount + ' &#3647';
             textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
@@ -384,11 +388,12 @@ function calPrice(start, rate, type) {
             price2.innerHTML = 'Price : ' + pricemotor + ' &#3647';
             textTotalAmount.innerHTML = 'Price(' + pricemotor + ' &#3647) + Charge(3.65%)' + ' = ' + netAmount + ' &#3647';
         }
-
     } else {
-        amount = ((total * rate) + start);
-        totalAmount = (((0.0365) * amount) + amount).toFixed(2);
-        price1.innerHTML = 'Price : ' + totalAmount + ' &#3647';
-        price2.innerHTML = 'Price : ' + totalAmount + ' &#3647';
+        price1.innerHTML = 'Price : ' + amount + ' &#3647';
+        price2.innerHTML = 'Price : ' + amount + ' &#3647';
+        textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
     }
+    document.getElementById('total').innerHTML = totalDistance + ' km';
+    document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
+    document.getElementById('destination').innerHTML = desName;
 }

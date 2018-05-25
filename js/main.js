@@ -4,7 +4,6 @@ document.getElementById('signoutbtn').style.display = 'none';
 document.getElementById('name').style.display = 'none';
 document.getElementById('tel').style.display = 'none';
 document.getElementById('email').style.display = 'none';
-document.getElementById('callService').disabled = true;
 document.getElementById('price').style.display = 'none';
 document.getElementById('itemPay').style.display = 'none';
 document.getElementById('omise').style.display = 'none';
@@ -14,7 +13,14 @@ document.getElementById('2').style.display = 'none';
 document.getElementById('3').style.display = 'none';
 document.getElementById('4').style.display = 'none';
 document.getElementById('cusNameAndLogo').style.display = 'none';
+document.getElementById('call').style.display = 'none';
+document.getElementById('wait').style.display = 'none';
+document.getElementById('coming').style.display = 'none';
 document.getElementById('logoDefault').style.display = 'block';
+
+/*--test--*/
+document.getElementById('test').style.display = 'none';
+/*----*/
 
 function login() {
     document.getElementById('popuplogin').style.display = 'none';
@@ -28,8 +34,24 @@ function login() {
 }
 
 function callService() {
-    document.getElementById('callService').disabled = false;
+    document.getElementById('wait').style.display = 'none';
+    document.getElementById('call').style.display = 'block';
     document.getElementById('price').style.display = 'block';
-    document.getElementById('itemPay').style.display = 'block';
+}
 
+function wait() {
+    document.getElementById('call').style.display = 'none';
+    document.getElementById('wait').style.display = 'block';
+
+    /*--test--*/
+    document.getElementById('test').style.display = 'block';
+    /*-----*/
+
+}
+
+function coming() {
+    document.getElementById('wait').style.display = 'none';
+    document.getElementById('coming').style.display = 'block';
+    document.getElementById('itemPay').style.display = 'block';
+    document.getElementById('service').disabled = true;
 }
