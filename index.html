@@ -240,7 +240,8 @@
     <div class="modal fade" id="route" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content" style="height:580px;padding: 2%;">
-                <div class="title">Route
+                <span class="w3-button w3-display-topright" style="color: orangered" data-dismiss="modal">&times;</span>
+                <div class="title" style="margin-top: 6%;z-index: 999;">Route
                 </div>
                 <div class="list-group" style="z-index: 9999999;">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -260,10 +261,10 @@
                 <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;margin-top: 4%;">
                 </div>
                 <div id="call" class="list-group" style="z-index: 9999999;">
-                        <button type="button" style="padding: 10px;" class="btn btn-success" data-toggle="modal" data-target="#confirm">
-                            <label style="margin-bottom: 5%">Call service
-                                <label>
-                        </button>
+                    <button type="button" style="padding: 10px;" class="btn btn-success" data-toggle="modal" data-target="#confirm">
+                        <label style="margin-bottom: 5%">Call service
+                            <label>
+                    </button>
                 </div>
                 <div id="wait" class="list-group" style="z-index: 9999999;">
                     <button type="button" style="padding: 10px;" class="btn btn-warning" onclick="callService();clearTime();">
@@ -293,7 +294,8 @@
     <div class="modal fade" id="noti" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content" style="height:550px;padding: 2%;">
-                <div class="title">Notifications
+                <span class="w3-button w3-display-topright" style="color: orangered" data-dismiss="modal">&times;</span>
+                <div class="title" style="margin-top: 6%;z-index: 999;">Notifications
                 </div>
                 <div class="table-responsive">
 
@@ -326,8 +328,8 @@
     <div class="modal fade" id="callhistory" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content" style="height: 550px;">
-                <div class="w3-center" style="background-color:rgb(0, 0, 0);color: white;margin:2%;">
-                    <h3>History</h3>
+                <span class="w3-button w3-display-topright" style="color: orangered" data-dismiss="modal">&times;</span>
+                <div class="title" style="margin-top: 6%;z-index: 999;">History
                 </div>
                 <div class="modal-body">
                     <div class="" style="position: relative;overflow-y: auto;overflow-x: auto;max-height: 450px;
@@ -450,7 +452,8 @@
     <div class="modal fade" id="omise" style="z-index:9999999;">
         <div class="modal-dialog" style="text-align: center">
             <div class="modal-content" style="height: 550px;">
-                <div class="title">List of pay
+                <span class="w3-button w3-display-topright" style="color: orangered" data-dismiss="modal">&times;</span>
+                <div class="title" style="margin-top: 6%;z-index: 999;">List of pay
                 </div>
                 <div class="list-group">
                     <div id="itemPay">
@@ -492,26 +495,26 @@
     <!--/Omise popup-->
 
     <!--Comfirm popup-->
-          
-          <!-- start modal-->
-          <div class="modal fade" id="confirm" style="z-index: 999999999;">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
+
+    <!-- start modal-->
+    <div class="modal fade" id="confirm" style="z-index: 999999999;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
                     <h4 class="modal-title">Notice</h4>
-                  </div>
-                  <div class="modal-body">
+                </div>
+                <div class="modal-body">
                     <p>Are you sure ?</p>
-                  </div>
-                  <div class="modal-footer text-center">
+                </div>
+                <div class="modal-footer text-center">
                     <button type="button" title="continue" class="btn btn-success" data-dismiss="modal" onclick="wait();time();">Continue</button>
                     <button type="button" title="go back" class="btn btn-danger" data-dismiss="modal">Go Back</button>
-                  </div>
                 </div>
-          
-              </div>
-          </div>
+            </div>
+
+        </div>
+    </div>
 
     <!--/Confirm popup-->
 
