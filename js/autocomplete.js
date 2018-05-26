@@ -1,4 +1,5 @@
-var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, amount, totalDistance, placeName;
+var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay,
+    radius = '4000', service, desName, type, rate, pricemotor, amount, totalDistance, placeName;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
