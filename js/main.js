@@ -37,11 +37,13 @@ function callService() {
     document.getElementById('wait').style.display = 'none';
     document.getElementById('call').style.display = 'block';
     document.getElementById('price').style.display = 'block';
+    document.getElementById('select').disabled = false;
 }
 
 function wait() {
     document.getElementById('call').style.display = 'none';
     document.getElementById('wait').style.display = 'block';
+    document.getElementById('select').disabled = true;
 
     /*--test--*/
     document.getElementById('test').style.display = 'block';
