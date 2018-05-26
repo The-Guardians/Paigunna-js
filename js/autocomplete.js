@@ -67,8 +67,8 @@ function geoLocation(map) {
             infoWindow.open(map);
             map.setCenter(pos);
             console.log('Current location => lat : ' + position.coords.latitude + ' lng : ' + position.coords.longitude)
-            console.log(test1+' <=> '+test2);
-            document.getElementById('myLocation').innerHTML = desName;
+            
+            
             
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
@@ -386,19 +386,21 @@ function calPrice(start, rate, type) {
             price1.innerHTML = 'Price : ' + amount + ' &#3647';
             price2.innerHTML = 'Price : ' + amount + ' &#3647';
             textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
+            document.getElementById('myLocation').innerHTML = 'Price : '+ amount + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
         } else {
             var netAmount = (((0.0365) * pricemotor) + pricemotor).toFixed(2);
             price1.innerHTML = 'Price : ' + pricemotor + ' &#3647';
             price2.innerHTML = 'Price : ' + pricemotor + ' &#3647';
             textTotalAmount.innerHTML = 'Price(' + pricemotor + ' &#3647) + Charge(3.65%)' + ' = ' + netAmount + ' &#3647';
+            document.getElementById('myLocation').innerHTML = 'Price : '+ pricemotor + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
         }
     } else {
         price1.innerHTML = 'Price : ' + amount + ' &#3647';
         price2.innerHTML = 'Price : ' + amount + ' &#3647';
         textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
+        document.getElementById('myLocation').innerHTML = 'Price : '+ amount + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
     }
     document.getElementById('total').innerHTML = totalDistance + ' km';
     document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
     document.getElementById('destination').innerHTML = desName;
-    
 }
