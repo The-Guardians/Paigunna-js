@@ -26,9 +26,9 @@ function getRoute() {
     if (directionsDisplay != null) {
         directionsDisplay.setMap(null);
         panel = document.getElementById('route-panel').innerHTML = "";
-        document.getElementById('callService').disabled = true;
         document.getElementById('itemPay').style.display = 'none';
         document.getElementById('price').style.display = 'none';
+        document.getElementById('call').style.display = 'none';
     }
     panel = document.getElementById('route-panel');
     source = pos;
@@ -65,9 +65,7 @@ function geoLocation(map) {
             markers.push(marker);
             infoWindow.open(map);
             map.setCenter(pos);
-
-            console.log("Mylocation:" + "Latitude: " + position.coords.latitude +
-                ",Longitude: " + position.coords.longitude);
+            console.log('Current location => lat : ' + position.coords.latitude + ' lng : ' + position.coords.longitude)
 
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
@@ -242,14 +240,14 @@ function createMarker(place) {
     if (directionsDisplay != null) {
         directionsDisplay.setMap(null);
         panel = document.getElementById('route-panel').innerHTML = "";
-        document.getElementById('callService').disabled = true;
         document.getElementById('itemPay').style.display = 'none';
         document.getElementById('price').style.display = 'none';
+        document.getElementById('call').style.display = 'none';
     }
     marker.addListener('click', function () {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         var markerPos = marker.getPosition();
-        console.log("lat : " + markerPos.lat() + ", lng : " + markerPos.lng());
+        console.log('Locatoin on click => lat : ' + markerPos.lat() + ' lng : ' + markerPos.lng());
         getRouteSearch(markerPos, place);
     });
 
@@ -345,15 +343,15 @@ function setTypeTaxi() {
     type = "taxi";
     if (totalDistance <= 1.0) {
         rate = 0;
-    } else if (totalDistance > 1.0 && total <= 10.0) {
+    } else if (totalDistance > 1.0 && totalDistance <= 10.0) {
         rate = 5.5;
-    } else if (totalDistance > 10.0 && total <= 20.0) {
+    } else if (totalDistance > 10.0 && totalDistance <= 20.0) {
         rate = 6.5;
-    } else if (totalDistance > 20.0 && total <= 40.0) {
+    } else if (totalDistance > 20.0 && totalDistance <= 40.0) {
         rate = 7.5;
-    } else if (totalDistance > 40.0 && total <= 60.0) {
+    } else if (totalDistance > 40.0 && totalDistance <= 60.0) {
         rate = 8.0;
-    } else if (totalDistance > 60.0 && total <= 80.0) {
+    } else if (totalDistance > 60.0 && totalDistance <= 80.0) {
         rate = 9.0;
     } else if (totalDistance > 80.0) {
         rate = 10.5;

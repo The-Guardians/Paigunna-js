@@ -156,7 +156,7 @@
     <!--Map-->
 
     <input id="searchInput" class="controls" type="text" placeholder="Enter a location">
-    <div id="map" style=" width: 100%;height: 106%;margin: auto"></div>
+    <div id="map" style=" width: 100%;height: 106%;margin: auto;"></div>
 
     <!--Account popup-->
 
@@ -262,10 +262,10 @@
                 <div id="route-panel" style="position: relative;overflow-y: auto;overflow-x: auto;margin-top: 4%;">
                 </div>
                 <div id="call" class="list-group" style="z-index: 9999999;">
-                    <button id="callService" type="button" style="padding: 10px;" class="btn btn-success" onclick="wait();time();">
-                        <label style="margin-bottom: 5%" >Call service
-                            <label>
-                    </button>
+                        <button type="button" style="padding: 10px;" class="btn btn-success" data-toggle="modal" data-target="#confirm">
+                            <label style="margin-bottom: 5%">Call service
+                                <label>
+                        </button>
                 </div>
                 <div id="wait" class="list-group" style="z-index: 9999999;">
                     <button type="button" style="padding: 10px;" class="btn btn-warning" onclick="callService();clearTime();">
@@ -279,11 +279,11 @@
                     </button>
                 </div>
                 <div id="test" class="list-group" style="z-index: 9999999;">
-                        <button type="button" style="padding: 10px;" class="btn btn-danger" onclick="coming()">
-                            <label style="margin-bottom: 5%">test(ถ้ามีคนกดรับ)
-                                <label>
-                        </button>
-                    </div>
+                    <button type="button" style="padding: 10px;" class="btn btn-danger" onclick="coming()">
+                        <label style="margin-bottom: 5%">test(ถ้ามีคนกดรับ)
+                            <label>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -493,6 +493,30 @@
     </div>
 
     <!--/Omise popup-->
+
+    <!--Comfirm popup-->
+          
+          <!-- start modal-->
+          <div class="modal fade" id="confirm" style="z-index: 999999999;">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Notice</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure ?</p>
+                  </div>
+                  <div class="modal-footer text-center">
+                    <button type="button" title="continue" class="btn btn-success" data-dismiss="modal" onclick="wait();time();">Continue</button>
+                    <button type="button" title="go back" class="btn btn-danger" data-dismiss="modal">Go Back</button>
+                  </div>
+                </div>
+          
+              </div>
+          </div>
+
+    <!--/Confirm popup-->
 
     <!-- SCRIPTS -->
 
