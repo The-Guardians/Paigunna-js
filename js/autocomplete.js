@@ -1,4 +1,4 @@
-var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, amount, totalDistance,placeName;
+var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, amount, totalDistance, placeName;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -379,28 +379,17 @@ function calPrice(start, rate, type) {
     if (textTotalAmount != "") {
         textTotalAmount.innerHTML = "";
     }
-    amount = ((totalDistance * rate) + start);
-    totalAmount = (((0.0365) * amount) + amount).toFixed(2);
-    if (type == "motor") {
-        if (totalDistance > 5.0) {
-            price1.innerHTML = 'Price : ' + amount + ' &#3647';
-            price2.innerHTML = 'Price : ' + amount + ' &#3647';
-            textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
-            document.getElementById('myLocation').innerHTML = 'Price : '+ amount + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
-        } else {
-            var netAmount = (((0.0365) * pricemotor) + pricemotor).toFixed(2);
-            price1.innerHTML = 'Price : ' + pricemotor + ' &#3647';
-            price2.innerHTML = 'Price : ' + pricemotor + ' &#3647';
-            textTotalAmount.innerHTML = 'Price(' + pricemotor + ' &#3647) + Charge(3.65%)' + ' = ' + netAmount + ' &#3647';
-            document.getElementById('myLocation').innerHTML = 'Price : '+ pricemotor + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
-        }
+    if (type == "motor" && totalDistance <= 5.0) {
+        amount = pricemotor;
     } else {
-        price1.innerHTML = 'Price : ' + amount + ' &#3647';
-        price2.innerHTML = 'Price : ' + amount + ' &#3647';
-        textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
-        document.getElementById('myLocation').innerHTML = 'Price : '+ amount + ' ,Distance : ' + totalDistance + ' ,Destination : '+ placeName;
+        amount = ((totalDistance * rate) + start);
     }
+    totalAmount = (((0.0365) * amount) + amount).toFixed(2);
+    price1.innerHTML = 'Price : ' + amount + ' &#3647';
+    price2.innerHTML = 'Price : ' + amount + ' &#3647';
+    textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
     document.getElementById('total').innerHTML = totalDistance + ' km';
     document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
     document.getElementById('destination').innerHTML = desName;
+    document.getElementById('myLocation').innerHTML = 'Price : '+ amount +' &#3647' + ' ,Distance : ' + totalDistance +' km' + ' ,Destination : '+ placeName;
 }
