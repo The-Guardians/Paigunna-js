@@ -59,13 +59,14 @@ function alertPopup() {
 
 function addNotibox() {
     var objTo = document.getElementById('notimodule');
-    var notibox = document.getElementById('1').style.display = 'block';
-    var divtest = document.createElement("div");
-    divtest.appendChild = notibox;
-    objTo.appendChild(divtest);
+    // var notibox = document.createTextNode("<strong>Error!</strong> Your request has a problem.");
+    var notibox = document.createElement("div");
+    notibox.setAttribute("id" , "1");
+    // var divtest = document.createAttribute("id" , "1");
+    // divtest.appendChild (notibox);
+
+    objTo.appendChild(notibox);
 }
 
-{/* <div id="container"></div>
 
-<input type="button" onclick="addDiv();" value="Click here to add div"/> */}
     
