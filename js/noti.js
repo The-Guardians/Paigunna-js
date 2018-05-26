@@ -60,12 +60,12 @@ function alertPopup() {
 function addNotibox() {
     var objTo = document.getElementById('notimodule');
     // var notibox = document.createTextNode("<strong>Error!</strong> Your request has a problem.");
-    var notibox = document.createElement("div");
-    notibox.setAttribute("id" , "1");
+    // var notibox = document.createElement("div").getElementById('1');
+    // notibox.setAttribute("id" , "1");
     // var divtest = document.createAttribute("id" , "1");
     // divtest.appendChild (notibox);
 
-    objTo.appendChild(notibox);
+    objTo.appendChild(document.getElementById('1').style.display = 'block');
 }
 
 
