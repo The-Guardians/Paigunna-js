@@ -1,4 +1,4 @@
-var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, totalDistance;
+var map, infowindow, pos, panel, source, destination, directionsService, directionsDisplay, radius = '5000', service, desName, type, rate, pricemotor, amount, totalDistance,placeName;
 var markers = [];
 var mapOption = {
     center: { lat: 13.7248936, lng: 100.4930262 },
@@ -117,6 +117,7 @@ function searchBox(map, infowindow) {
             }
             getRoute();
             desName = input.value;
+            placeName = place.name;
         }
         else {
             map.setCenter(place.geometry.location);
@@ -139,7 +140,8 @@ function searchBox(map, infowindow) {
                 (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
-        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+        infowindow.setContent('<div><strong>' + place.name + '</strong></div>');
+        // infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map, marker);
         //Location details
         for (var i = 0; i < place.address_components.length; i++) {
@@ -252,6 +254,7 @@ function createMarker(place) {
         var markerPos = marker.getPosition();
         console.log('Locatoin on click => lat : ' + markerPos.lat() + ' lng : ' + markerPos.lng());
         getRouteSearch(markerPos, place);
+        placeName = place.name;
     });
 
     markers.push(marker);
@@ -363,7 +366,7 @@ function setTypeTaxi() {
 }
 
 function calPrice(start, rate, type) {
-    var price1, price2, amount, totalAmount, textTotalAmount;
+    var price1, price2, totalAmount, textTotalAmount;
     price1 = document.getElementById('price1');
     price2 = document.getElementById('price2');
     textTotalAmount = document.getElementById('totalAmount');
