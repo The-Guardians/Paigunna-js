@@ -7,6 +7,7 @@ var mapOption = {
     disableDefaultUI: true,
     zoomControl: true
 };
+var test1,test2;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOption);
@@ -67,7 +68,9 @@ function geoLocation(map) {
             infoWindow.open(map);
             map.setCenter(pos);
             console.log('Current location => lat : ' + position.coords.latitude + ' lng : ' + position.coords.longitude)
-
+            
+            
+            
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
             infoWindow.setPosition(map.getCenter());
@@ -389,4 +392,5 @@ function calPrice(start, rate, type) {
     document.getElementById('total').innerHTML = totalDistance + ' km';
     document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
     document.getElementById('destination').innerHTML = desName;
+    document.getElementById('myLocation').innerHTML = 'Price : '+ amount +' &#3647' + ' ,Distance : ' + totalDistance +' km' + ' ,Destination : '+ placeName;
 }

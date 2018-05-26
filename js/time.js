@@ -1,4 +1,4 @@
-var wait_time = 300;
+var wait_time = 300; //5 minute
 var vela;
 function time() {
     wait_time = 300;

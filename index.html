@@ -17,9 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 </head>
 
 <body class="fixed-sn black-skin" onload="zeroNumber()">
+    
     <!--Double navigation-->
     <header>
         <!-- Sidebar navigation -->
@@ -298,21 +300,22 @@
                 <span class="w3-button w3-display-topright" style="color: orangered" data-dismiss="modal">&times;</span>
                 <div class="title" style="margin-top: 6%;z-index: 999;">Notifications
                 </div>
-                <div class="table-responsive">
+                
+                <div id="notimodule" class="table-responsive">
 
-                    <button onclick="click1();increaseNumber();">alert</button>
-                    <button onclick="click2();increaseNumber();">sucess</button>
-                    <button onclick="click3();increaseNumber();">Info</button>
-                    <button onclick="click4();increaseNumber();">Warning</button>
+                        <button onclick="click1();increaseNumber();alertPopup();addNotibox();">alert</button>
+                        <button onclick="click2();increaseNumber();alertPopup();">sucess</button>
+                        <button onclick="click3();increaseNumber();alertPopup();">Info</button>
+                        <button onclick="click4();increaseNumber();alertPopup();">Warning</button>
 
                     <div id="1" class="alert btn" onclick="close1();decreaseNumber();">
-                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                        <strong>Error!</strong> Your request has a problem.
                     </div>
                     <div id="2" class="alert success btn" onclick="close2();decreaseNumber();">
-                        <strong>Success!</strong> Indicates a successful or positive action.
+                        <strong>Success!</strong> job successful.
                     </div>
-                    <div id="3" class="alert info btn" onclick="close3();decreaseNumber();">
-                        <strong>Info!</strong> Indicates a neutral informative change or action.
+                    <div  id="3" class="alert info btn" onclick="close3();decreaseNumber();">
+                        <strong>Info!</strong> User call service at <label id="myLocation"></label>
                     </div>
                     <div id="4" class="alert warning btn" onclick="close4();decreaseNumber();">
                         <strong>Warning!</strong> Indicates a warning that might need attention.
@@ -509,7 +512,7 @@
                     <p>Are you sure ?</p>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" title="continue" class="btn btn-success" data-dismiss="modal" onclick="wait();time();">Continue</button>
+                    <button type="button" title="continue" class="btn btn-success" data-dismiss="modal" onclick="wait();time();click3();increaseNumber();alertPopup();">Continue</button>
                     <button type="button" title="go back" class="btn btn-danger" data-dismiss="modal">Go Back</button>
                 </div>
             </div>
