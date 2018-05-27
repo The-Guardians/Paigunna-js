@@ -7,7 +7,7 @@ var mapOption = {
     disableDefaultUI: true,
     zoomControl: true
 };
-var test1,test2;
+var test1, test2;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOption);
@@ -28,9 +28,9 @@ function getRoute() {
     if (directionsDisplay != null) {
         directionsDisplay.setMap(null);
         panel = document.getElementById('route-panel').innerHTML = "";
-        document.getElementById('itemPay').style.display = 'none';
         document.getElementById('price').style.display = 'none';
         document.getElementById('call').style.display = 'none';
+        document.getElementById('test').style.display = 'none';
     }
     panel = document.getElementById('route-panel');
     source = pos;
@@ -68,9 +68,9 @@ function geoLocation(map) {
             infoWindow.open(map);
             map.setCenter(pos);
             console.log('Current location => lat : ' + position.coords.latitude + ' lng : ' + position.coords.longitude)
-            
-            
-            
+
+
+
         }, function () {
             // handleLocationError(true, infoWindow, map.getCenter());
             infoWindow.setPosition(map.getCenter());
@@ -246,9 +246,9 @@ function createMarker(place) {
     if (directionsDisplay != null) {
         directionsDisplay.setMap(null);
         panel = document.getElementById('route-panel').innerHTML = "";
-        document.getElementById('itemPay').style.display = 'none';
         document.getElementById('price').style.display = 'none';
         document.getElementById('call').style.display = 'none';
+        document.getElementById('test').style.display = 'none';
     }
     marker.addListener('click', function () {
         marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -370,15 +370,9 @@ function calPrice(start, rate, type) {
     var price1, price2, totalAmount, textTotalAmount;
     price1 = document.getElementById('price1');
     price2 = document.getElementById('price2');
-    textTotalAmount = document.getElementById('totalAmount');
-    if (price1 != "") {
-        price1.innerHTML = "";
-    }
+    textTotalAmount = document.getElementById('totalAmount'); 
     if (price2 != "") {
         price2.innerHTML = "";
-    }
-    if (textTotalAmount != "") {
-        textTotalAmount.innerHTML = "";
     }
     if (type == "motor" && totalDistance <= 5.0) {
         amount = pricemotor;
@@ -386,11 +380,12 @@ function calPrice(start, rate, type) {
         amount = ((totalDistance * rate) + start);
     }
     totalAmount = (((0.0365) * amount) + amount).toFixed(2);
-    price1.innerHTML = 'Price : ' + amount + ' &#3647';
     price2.innerHTML = 'Price : ' + amount + ' &#3647';
-    textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
-    document.getElementById('total').innerHTML = totalDistance + ' km';
-    document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
-    document.getElementById('destination').innerHTML = desName;
-    document.getElementById('myLocation').innerHTML = 'Price : '+ amount +' &#3647' + ' ,Distance : ' + totalDistance +' km' + ' ,Destination : '+ placeName;
+    if (document.getElementById('itemPay').style.display != 'block') {
+        price1.innerHTML = 'Price : ' + amount + ' &#3647';
+        textTotalAmount.innerHTML = 'Price(' + amount + ' &#3647) + Charge(3.65%)' + ' = ' + totalAmount + ' &#3647';
+        document.getElementById('total').innerHTML = totalDistance + ' km';
+        document.getElementById('totalTravel').innerHTML = 'item #1 (  ' + totalDistance + ' km)';
+        document.getElementById('destination').innerHTML = desName;
+    }
 }
